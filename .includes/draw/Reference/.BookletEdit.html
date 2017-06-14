@@ -1,0 +1,71 @@
+
+<script language="javascript">
+<!--
+function checkForm(form) {
+
+    if(!checkCommon(form)){
+        return false;
+    }
+
+    return true;
+
+}
+
+-->
+</script>
+
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Title:
+                </p>
+            </td><td>
+                <input type="text" size="40" name="title" value="<?php echo $aref->title; ?>"/>
+            </td></tr>
+
+            <input type="hidden" name="reference_type" value="Booklet"/>
+            <?php if(isset($aref->id)){ ?>
+            <input type="hidden" name="id" value="<?php echo $aref->id; ?>"/>
+            <?php } ?>
+            <tr><td class="reference_edit">
+                Author:
+                </p>
+            </td><td>
+                <input type="text" size="40" name="author" value="<?php echo $aref->OPTauthor; ?>"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Year:
+                </p>
+            </td><td>
+                <input type="text" size="40" name="year" value="<?php echo $aref->OPTyear; ?>"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Month:
+            </td><td>
+                <?php include($GLOBALS["draw_includes_path"]."/.MonthEdit.html"); ?>
+            </td></tr>
+             <tr><td class="reference_edit">
+                 Address:
+            </td><td>
+                <input type="text" size="40" name="address" value="<?php echo $aref->OPTaddress; ?>"/>
+            </td></tr>
+             <tr><td class="reference_edit">
+                How Published:
+            </td><td>
+                <input type="text" size="40" name="howpublished" value="<?php echo $aref->OPThowpublished; ?>"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Keywords:
+            </td><td>
+                <input type="text" size="40" name="keywords" value="<?php echo $aref->OPTkeyword; ?>"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Note:
+            </td><td>
+                <input type="text" size="40" name="note" value="<?php echo $aref->OPTnote; ?>"/>
+            </td></tr>
+             <tr><td class="reference_edit">
+                Annote:
+            </td><td>
+                <input type="text" size="40" name="annote" value="<?php echo $aref->OPTannote; ?>"/>
+            </td></tr>
+ 

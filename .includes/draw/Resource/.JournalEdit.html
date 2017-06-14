@@ -1,0 +1,50 @@
+
+<script language="javascript">
+<!--
+function checkForm(form) {
+
+    if(!checkCommon(form)){
+        return false;
+    }
+
+    if(form.year.value == ""){
+
+        alert("Please insert a Year!");
+        form.year.focus();
+        return false;
+                
+    }
+
+    return true;
+
+}
+
+-->
+</script>
+
+            <?php if(isset($ares->id)){ ?>
+            <input type="hidden" name="id" value="<?php echo $ares->id; ?>"/>
+            <?php } ?>
+            <tr><td class="resource_edit">
+                <p class="mandatory">
+                Year:
+                </p>
+            </td><td>
+                <input type="text" size="30" name="year" value="<?php echo $ares->year; ?>"/>
+            </td></tr>
+            <tr><td class="resource_edit">
+                Month:
+            </td><td>
+                <?php include($GLOBALS["draw_includes_path"]."/.MonthEdit.html"); ?>
+            </td></tr>
+             <tr><td class="resource_edit">
+                 Volume:
+            </td><td>
+                <input type="text" size="30" name="volume" value="<?php echo $ares->OPTvolume; ?>"/>
+            </td></tr>
+             <tr><td class="resource_edit">
+                Number:
+            </td><td>
+                <input type="text" size="30" name="number" value="<?php echo $ares->OPTnumber; ?>"/>
+            </td></tr>
+ 

@@ -1,0 +1,44 @@
+
+<table class="article_view">
+    <tr><td class="article_top" align="center">
+        <table class="article_main">
+            <tr><td class="article_main" align="right">
+                <p class="article_main">Name:</p>
+            </td><td colspan="3">
+                <p class="view_title"><?php echo $ares->name; ?></p>
+            </td></tr>
+            <tr><td class="article_main" align="right">
+                <p class="article_main">URL:</p>
+            </td><td>
+            <p class="<?php echo $class; ?>"><?php echo $ares->urlmain; ?></p>
+            </td></tr>
+            <tr><td class="article_main" align="right">
+                <p class="article_main">Watch:</p>
+            </td><td>
+                <p class="view_title"><?php echo $ares->watch; ?></p>
+            </td></tr>
+            <?php if($ares->watch == "Yes"){ ?>
+            <tr><td class="article_main" align="right">
+                <p class="article_main">Watch URL:</p>
+            </td><td>
+                <p class="view_author"><?php echo $ares->watchurl; ?></p>
+            </td></tr>
+            <tr><td class="article_main" align="right">
+                <p class="article_main">Watch Keywords:</p>
+            </td><td>
+                <p class="article_main"><?php echo $ares->watchkeys; ?></p>
+            </td></tr>
+            <?php } ?>
+        </table>
+    </td></tr>
+    <?php if(valid($ares->description)){ ?>
+    <tr><td class="article_bottom" colspan="1" align="center">
+        <p class="article_main">Description:</p>  
+    </td></tr>
+    <tr><td class="article_bottom" colspan="1">
+        <?php echo $ares->description; ?>
+    </td></tr>
+    <?php } ?>
+</table>
+
+        

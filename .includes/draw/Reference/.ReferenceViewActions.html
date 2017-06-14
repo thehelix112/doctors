@@ -1,0 +1,31 @@
+</td><td valign="top" align="center">
+
+    <table class="view_actions" cellspacing="2" cellpadding="0">	   
+        <tr><td class="view_actions" align="center">
+                <?php echo get_action_as_link("Edit", $this->id, $_SESSION["object_type"], ACTION_EDIT); ?>
+        </td></tr>
+        <tr><td class="view_actions" align="center">
+                <?php echo get_action_as_link("Delete", $this->id, $_SESSION["object_type"], ACTION_DELETE); ?>
+        </td></tr>
+        <tr><td height="1" class="menu_divider"><img src="images/clear.gif" height="1"></td></tr>
+        <tr><td class="view_actions" align="center">
+                <?php echo Link::display_add("Categorise", $this->id, LINK_REFERENCE_IN_CATEGORY); ?>
+        </td></tr>
+        <tr><td class="view_actions" align="center">&nbsp;
+                <?php echo Link::display_add("Record Citations", $this->id, LINK_REFERENCE_CITES_REFERENCE); ?>&nbsp;&nbsp;
+        </td></tr>
+        <tr><td height="1" class="menu_divider"><img src="images/clear.gif" height="1"></td></tr>
+        <tr><td class="view_actions" align="center">
+                <?php 
+			        $additional = array("reference_id" => $this->id);
+					echo get_action_as_link("Attach Document", ANY, 
+											TYPE_DOCUMENT, ACTION_ADD, 
+											FALSE, $additional); 
+				?>
+        </td></tr>
+
+
+    </table>
+
+</td></tr>
+</table>

@@ -1,0 +1,32 @@
+
+    </td></tr>
+    <tr><td class="article_bottom" colspan="4">
+        &nbsp;
+    </td></tr>
+    <?php if(valid($this->description)){ ?>
+    <tr><td class="article_bottom" colspan="4" align="center">
+        <p class="article_main">Description:</p>  
+    </td></tr>
+    <tr><td class="article_bottom" colspan="4">
+        <?php echo $this->description; ?>
+    </td></tr>
+    <?php } ?>
+    <?php if(valid($this->abstract)){ ?>
+    <tr><td class="article_bottom" colspan="4" align="center">
+        <p class="article_main">Abstract:</p>  
+    </td></tr>
+    <tr><td class="article_bottom" colspan="4">
+        <?php echo $this->abstract; ?>
+    </td></tr>
+    <?php } ?>
+    <?php if(valid($this->content)){ ?>
+    <tr><td class="article_bottom" colspan="4" align="center">
+        <p class="article_main">Content:</p>  
+    </td></tr>
+    <tr><td class="article_bottom" colspan="4">
+        <?php echo $this->content; ?>
+    </td></tr>
+    <?php } ?>
+</table>
+
+

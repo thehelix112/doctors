@@ -1,0 +1,35 @@
+            <tr><td colspan="2" align="center">
+                    &nbsp;
+            </td></tr>
+            <tr><td colspan="2" align="center">
+                    <p class="mandatory">Items in red are mandatory</p>
+            </td></tr>
+
+        </table>
+    </td><td class="reference_edit" align="center" valign="top">
+		<table width="100%">
+            <tr><td class="reference_edit" align="center">
+                Web Link:<br/>
+                <input type="text" size="52" name="weblink" value="<?php echo $aref->weblink; ?>"/>
+            </td></tr>
+            <tr><td class="reference_edit" align="center">
+				Description:<br/>
+				<textarea name="description" rows="5" cols="50"><?php echo $aref->description; ?></textarea>
+            </td></tr>
+            <tr><td class="reference_edit" align="center">
+				Abstract:<br/>
+		        <textarea name="abstract" rows="5" cols="50"><?php echo $aref->abstract; ?></textarea>
+            </td></tr>
+            <tr><td class="reference_edit" align="center">
+				Content:<br/>
+		        <textarea name="content" rows="5" cols="50"><?php echo $aref->content; ?></textarea>
+            </td></tr>
+		</table>
+
+    </td></tr>
+    <tr><td class="reference_edit" colspan="2" align="center">
+            <input type="submit" name="action" value="Save" onClick="check_edit(this.form.reference_id);"> <input type="reset" value="Reset Form"> 
+    </td></tr>
+</table>
+
+</form>

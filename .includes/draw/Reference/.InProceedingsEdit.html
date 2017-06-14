@@ -1,0 +1,313 @@
+
+<script language="javascript">
+<!--
+
+var booktitle_prefix = "Proceedings of the ";
+
+function checkForm(form) {
+
+    if(!checkCommon(form)){
+        return false;
+    }
+
+    if(form.author.value == ""){
+
+        alert("Please insert a Author!");
+        form.author.focus();
+        return false;
+                
+    }
+    if(form.booktitle.value == ""){
+
+        alert("Please insert a Book Title!");
+        form.booktitle.focus();
+        return false;
+                
+    }
+
+	//strip the booktitle_prefix   
+	fullname = new String(form.booktitle.value);
+	form.booktitle.value = fullname.substr(booktitle_prefix.length,fullname.length);
+
+    return true;
+
+}
+
+<?php    
+
+    $conferences = array();
+
+    foreach($resources as $resource){
+	
+        if($resource["resource_type"] == get_type_as_string(TYPE_CONFERENCE)){
+            $conferences[] = $resource;
+        }
+    }
+    echo get_array_as_javascript_array($conferences, "conferences");
+?>
+
+var name;
+var year;
+var volume;
+var number;
+var month;
+var publisher;
+var series;
+var address;
+var editor;
+var organisation;
+
+function check_edit(text){
+
+    var form = text.form;
+
+	//if the values now match an existing conference then select that conferece in conference_select.
+	index = check_values(form);	
+
+	if(index > -1){
+	  form.conference_select.selectedIndex = ++index;
+	  
+	} else {
+	  form.conference_select.selectedIndex = 0;
+	}
+
+}
+
+function get_conference_from_booktitle(booktitle){
+
+    fullname = new String(booktitle);
+	return fullname.substr(booktitle_prefix.length,fullname.length); 
+
+}
+
+function get_booktitle_from_conference(conference){
+
+    return booktitle_prefix+conference;
+
+}
+
+function check_values(form){
+
+    //this is not working, fix it at some stage.
+
+    for(it = 0; it < conferences.length; it++){	
+
+	  formvalue = new String(get_conference_from_booktitle(form.booktitle.value));
+      databasevalue = new String(conferences[it]['name']);
+
+	  if(formvalue.substr(0,27) != databasevalue.substr(0,27)) continue;
+	  if(form.year.value != conferences[it]['year']) continue;
+	  if(form.volume.value != conferences[it]['volume']) continue;
+	  if(form.number.value != conferences[it]['number']) continue;
+	  if(form.month.value != conferences[it]['month']) continue;
+	  if(form.publisher.value != conferences[it]['publisher']) continue;
+	  if(form.series.value != conferences[it]['series']) continue;
+	  if(form.address.value != conferences[it]['address']) continue;
+	  if(form.editor.value != conferences[it]['editor']) continue;
+	  if(form.organisation.value != conferences[it]['organisation']) continue;
+	  return it;
+
+	}
+	
+	return -1;
+
+}
+
+function set_new_values(select){
+
+    var form = select.form;
+
+    if(select.value="new"){
+
+	  name = get_conference_from_booktitle(form.booktitle.value);
+	  year = form.year.value;
+	  volume = form.volume.value;
+	  number = form.number.value;
+	  month = form.month.value;	 
+	  publisher = form.publisher.value;
+	  series = form.series.value;
+	  address = form.address.value;
+	  editor = form.editor.value;
+	  organisation = form.organisation.value;
+
+	}
+
+}
+
+function conference_selected(select){
+
+    var form = select.form;
+	var index = select.selectedIndex;
+
+    if(index == 0){
+
+	  form.booktitle.value = get_booktitle_from_conference(name);
+	  form.year.value = year;
+	  form.volume.value = volume;
+	  form.number.value = number;
+	  form.month.value = month;
+	  form.publisher.value = publisher;
+	  form.series.value = series;
+	  form.address.value = address;
+	  form.editor.value = editor;
+	  form.organisation.value = organisation;
+
+	} else {
+
+	  index--;
+
+	  form.booktitle.value = get_booktitle_from_conference(conferences[index]['name']);
+	  form.year.value = conferences[index]['year'];
+	  form.volume.value = conferences[index]['volume'];
+	  form.number.value = conferences[index]['number'];
+	  form.month.value = conferences[index]['month'];
+	  form.publisher.value = conferences[index]['publisher'];
+	  form.series.value = conferences[index]['series'];
+	  form.address.value = conferences[index]['address'];
+	  form.editor.value = conferences[index]['editor'];
+	  form.organisation.value = conferences[index]['organisation'];
+
+	}
+
+}
+
+
+-->
+</script>
+
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Title:
+                </p>
+            </td><td>
+                <input type="text" size="40" name="title" value="<?php echo $aref->title; ?>"/>
+            </td></tr>
+
+            <input type="hidden" name="reference_type" value="InProceedings"/>
+            <?php if(isset($aref->id)){ ?>
+            <input type="hidden" name="id" value="<?php echo $aref->id; ?>"/>
+            <?php } ?>
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Author:
+                </p>
+            </td><td>
+                <input type="text" size="40" name="author" value="<?php echo $aref->author; ?>"/>
+            </td></tr>
+
+            <tr><td class="reference_edit">
+                Keywords:
+            </td><td>
+                <input type="text" size="40" name="keywords" value="<?php echo $aref->OPTkey; ?>"/>
+            </td></tr>
+             <tr><td class="reference_edit">
+                Pages:
+            </td><td>
+                <input type="text" size="40" name="pages" value="<?php echo $aref->OPTpages; ?>"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Note:
+            </td><td>
+                <input type="text" size="40" name="note" value="<?php echo $aref->OPTnote; ?>"/>
+            </td></tr>
+             <tr><td class="reference_edit">
+                Annote:
+            </td><td>
+                <input type="text" size="40" name="annote" value="<?php echo $aref->OPTannote; ?>"/>
+            </td></tr>
+
+			<tr><td colspan="2">&nbsp;</td></tr>	
+
+			<tr><td colspan="2"><p class="reference_heading">Conference Details</td></tr>
+
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Resource:
+                </p>
+            </td><td>
+				   <select name="conference_select" size="1" cols="40" onChange="conference_selected(this);" onFocus="set_new_values(this);">
+					 <option value="new">New</option>
+					 <?php
+					   foreach($conferences as $conference){
+
+					     $name = $conference['name']." ".$conference['year'];					   
+
+						 if(strlen($name) > $GLOBALS["max_name_length"]) $name = substr($name, 0, $GLOBALS["max_name_length"]-3)."...";
+					     echo "<option value=\"".$conference['id']."\"";
+
+						echo $aref->resource_id." ";
+
+			             if($conference['id'] == $aref->resource_id) echo " selected";
+					     echo ">".$name."</option>\n"; 
+					   
+					   }
+					 ?>				  
+				  </select>
+            </td></tr>            
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Title:
+                </p>
+            </td><td>
+                <input type="text" size="40" name="booktitle" value="<?php echo "Proceedings of the ".$aref->booktitle; ?>" onChange="check_edit(this);"/>
+            </td></tr>            
+            <tr><td class="reference_edit">
+                Year:
+            </td><td>
+                <input type="text" size="40" name="year" value="<?php echo $aref->OPTyear; ?>" onChange="check_edit(this);"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Month:
+            </td><td>
+                <?php include($GLOBALS["draw_includes_path"]."/.MonthEdit.html"); ?>
+            </td></tr>
+             <tr><td class="reference_edit">
+                Volume:
+            </td><td>
+                <input type="text" size="40" name="volume" value="<?php echo $aref->OPTvolume; ?>" onChange="check_edit(this);"/>
+            </td></tr>
+             <tr><td class="reference_edit">
+                Number:
+            </td><td>
+                <input type="text" size="40" name="number" value="<?php echo $aref->OPTnumber; ?>" onChange="check_edit(this);"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Editor:
+            </td><td>
+                <input type="text" size="40" name="editor" value="<?php echo $aref->OPTeditor; ?>" onChange="check_edit(this);"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Series:
+            </td><td>
+                <input type="text" size="40" name="series" value="<?php echo $aref->OPTseries; ?>" onChange="check_edit(this);"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Address:
+            </td><td>
+                <input type="text" size="40" name="address" value="<?php echo $aref->OPTaddress; ?>" onChange="check_edit(this);"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Organisation:
+            </td><td>
+                <input type="text" size="40" name="organisation" value="<?php echo $aref->OPTorganisation; ?>" onChange="check_edit(this);"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Publisher:
+            </td><td>
+                <input type="text" size="40" name="publisher" value="<?php echo $aref->OPTpublisher; ?>" onChange="check_edit(this);"/>
+            </td></tr>
+ 
+<script language="javascript">
+<!--
+
+	form = document.forms[1];
+
+	if(form.conference_select.options[form.conference_select.selectedIndex].value == "new"){
+
+		//if we don't already have a resource selected
+		check_edit(form.conference);
+
+	}
+
+//-->
+</script>

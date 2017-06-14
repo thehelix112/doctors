@@ -1,0 +1,15 @@
+
+    <table>
+        <tr><td>
+            <p class="main">Are you sure you want to delete the User `<?php echo $this->fullname; ?>'?</p>
+        </td></tr>
+        <tr><td align="right">
+            <form action="index.php" method="POST">
+                <input type="hidden" name="object_id" value="<?php echo $this->id; ?>"/>
+                <input type="hidden" name="object_type" value="<?php echo get_type_as_string(TYPE_USER); ; ?>"/>
+                <input type="hidden" name="confirm" value="TRUE"/>
+                <input type="submit" name="action" value="Delete"/>
+            </form>
+        </td></tr>
+    </table>
+        

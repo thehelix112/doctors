@@ -1,0 +1,62 @@
+
+
+<table class="document_view">
+    <tr><td class="document_top" align="left">
+        <p class="document_top">
+        View Document</p>
+    </td><td class="document_top" align="left">
+        <p class="document_top">
+        Action</p>
+    </td><tr>
+
+    <tr><td class="document_top" align="center">
+        <table class="document_main">
+            <tr><td class="document_main" align="right">
+                <p class="document_main">Name:</p>
+            </td><td colspan="3">
+                <p class="view_title"><?php echo $adoc->name; ?></p>
+            </td></tr>
+            <tr><td class="document_main" align="right">
+                <p class="document_main">Reference:</p>
+            </td><td colspan="3">
+                <p class="document_main"><?php 
+
+	$data = Link::get_links($adoc->id, ANY, LINK_DOCUMENT_OF_REFERENCE);
+    if(count($data) > 0){
+    	echo Link::display_links($data, LINK_TO, "");
+    }
+
+				 ?></p>
+            </td></tr>
+            <tr><td class="document_main" align="right">
+                <p class="document_main">Download:</p>
+            </td><td>
+                <p class="document_main">
+					<a target="_new" href="<?php echo $GLOBALS["base_url"].$GLOBALS["tmp_upload_path"].$adoc->filename; ?>">
+					&nbsp;<?php echo $adoc->filename; ?></a>
+                </p>
+            </td></tr>
+            <?php if(valid($adoc->description)){ ?>
+            <tr><td class="document_bottom" colspan="2" align="center">
+                <p class="document_main">Description:</p>  
+            </td></tr>
+            <tr><td class="document_bottom" colspan="2">
+                    <?php echo $adoc->description; ?>
+            </td></tr>
+            <?php } ?>
+       </table>
+
+</td><td valign="top" align="center">
+
+    <table class="view_actions">
+        <tr><td class="view_actions" align="center">
+           &nbsp;<?php echo get_action_as_link("Edit", $adoc->id, $_SESSION["object_type"], ACTION_EDIT); ?>&nbsp;
+        </td></tr>
+        <tr><td class="view_actions" align="center">
+           &nbsp;<?php echo get_action_as_link("Delete", $adoc->id, $_SESSION["object_type"], ACTION_DELETE); ?>&nbsp;&nbsp;
+        </td></tr>
+
+    </table>
+
+</td></tr>
+</table>

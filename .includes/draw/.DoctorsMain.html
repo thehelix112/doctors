@@ -1,0 +1,35 @@
+
+    <p class="main_title">
+    Welcome to Doctors, <?php 
+
+if(!DB::db_query("userQuery", "SELECT * FROM \"user\" WHERE \"username\" = '".$_SESSION["username"]."';")){
+    error("Getting user from database failed.");
+}
+$fullname = DB::db_get_field("userQuery", "fullname");
+
+$array = explode(" ", $fullname);
+
+echo $array[0]."!";
+?>
+    </p>
+	    <p class="main">
+    	  Doctors is an online reference management system which allows you
+    	  to easily maintain your references, store the document being
+    	  referenced, define reference categories and category
+    	  heirarchies, and centralise resource information.
+		</p>
+
+	    <p class="main">
+		  &nbsp;&nbsp;<a href="javascript:alert('Coming Soon...');">Take&nbsp;the&nbsp;Online&nbsp;Tutorial</a>&nbsp;-&nbsp;<a href="javascript:alert('Coming Soon...');">Get&nbsp;Help</a>
+		</p>
+
+		<p class="main">Doctors is happily brought to you by:
+          <ul class="main">
+            <li class="main"><a target="_new" href="http://www.gentoo.org">Gentoo Linux</a></li>
+            <li class="main"><a target="_new" href="http://www.apache.org">Apache</a></li>
+            <li class="main"><a target="_new" href="http://www.php.net">PHP</a></li>
+            <li class="main"><a target="_new" href="http://www.postgres.org">PostgreSQL</a></li>
+            <li class="main"><a target="_new" href="mailto:david.andrews@rgt.com.au"><b>David Andrews</b></a></li>
+          </ul>
+    	</p>
+

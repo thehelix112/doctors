@@ -1,0 +1,26 @@
+
+<script language="javascript">
+<!--
+function checkForm(form) {
+
+    if(!checkCommon(form)){
+        return false;
+    }
+
+    return true;
+
+}
+
+-->
+</script>
+
+            <?php if(isset($ares->id)){ ?>
+            <input type="hidden" name="id" value="<?php echo $ares->id; ?>"/>
+            <?php } ?>
+             <tr><td class="resource_edit">
+                 Address:
+            </td><td>
+                <input type="text" size="30" name="address" value="<?php echo $ares->OPTaddress; ?>"/>
+            </td></tr>
+
+ 

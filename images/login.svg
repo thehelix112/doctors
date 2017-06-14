@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"
+[
+ <!ATTLIST svg
+  xmlns:xlink CDATA #FIXED "http://www.w3.org/1999/xlink">
+]>
+<!-- Created with Sodipodi ("http://www.sodipodi.com/") -->
+<svg
+   id="svg548"
+   sodipodi:version="0.32"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   width="210mm"
+   height="297mm"
+   sodipodi:docbase="/var/www/localhost/htdocs/doctors/images"
+   sodipodi:docname="/var/www/localhost/htdocs/doctors/images/login.svg">
+  <defs
+     id="defs550" />
+  <sodipodi:namedview
+     id="base"
+     gridspacingy="14.1732pt"
+     gridspacingx="14.1732pt" />
+  <text
+     style="fill:black;stroke:#540026;font-family:helvetica;font-style:normal;font-weight:normal;font-size:12px;fill-opacity:1;stroke-opacity:1;stroke-width:0.852812;stroke-linejoin:miter;stroke-linecap:butt;stroke-dasharray:none;"
+     x="68.7931375"
+     y="147.765254"
+     id="text591"
+     transform="scale(2.931479,2.931481)">
+    <tspan
+       id="tspan592"
+       style="stroke:#540026;stroke-opacity:1;stroke-width:0.852812;stroke-dasharray:none;">
+doctors</tspan>
+  </text>
+  <g
+     id="g594"
+     transform="translate(196.2500,2.499969)">
+    <path
+       style="font-size:12;fill:none;fill-rule:evenodd;stroke:#b3005f;stroke-width:11.8369;stroke-dasharray:none;"
+       d="M 353.75 593.612 L 355 657.362 "
+       id="path557"
+       transform="matrix(0.329137,0.000000,0.000000,0.135527,15.94200,363.2719)" />
+    <path
+       style="font-size:12;fill:none;fill-rule:evenodd;stroke:#b3005f;stroke-width:16.6174;stroke-dasharray:none;"
+       d="M 440 581.112 L 475 656.112 "
+       id="path558"
+       transform="matrix(0.152814,0.000000,0.000000,0.148112,93.52428,355.1844)" />
+    <path
+       style="font-size:12;fill:none;fill-rule:evenodd;stroke:#b3005f;stroke-width:10.5281;stroke-dasharray:none;"
+       d="M 352.5 359.862 C 336.667 363.612 319.583 357.362 317.5 333.612 C 320.833 307.362 339.167 306.112 360 302.362 C 373.333 301.112 392.917 301.112 417.5 308.612 "
+       id="path563"
+       sodipodi:nodetypes="cccc"
+       transform="matrix(0.267424,0.000000,0.000000,0.210851,37.59300,323.1195)" />
+    <path
+       sodipodi:type="arc"
+       style="font-size:12;fill:none;fill-rule:evenodd;stroke:#b3005f;stroke-width:11.637;stroke-dasharray:none;"
+       id="path564"
+       d="M 430.000000 310.487183 A 8.125000 8.125000 0 1 0 413.750000,310.487183 A 8.125 8.125 0 1 0 430 310.487 L 421.875000 310.487183 z"
+       sodipodi:cx="421.875000"
+       sodipodi:cy="310.487183"
+       sodipodi:rx="8.125000"
+       sodipodi:ry="8.125000"
+       transform="matrix(0.202546,0.000000,0.000000,0.227864,65.43909,318.0488)" />
+    <path
+       style="font-size:12;fill:none;fill-rule:evenodd;stroke:#550081;stroke-width:14.9455;stroke-dasharray:none;"
+       d="M 497.5 476.737 C 497.5 542.632 444.02 596.112 378.125 596.112 C 374.007 596.112 369.937 595.903 365.925 595.495 C 361.914 595.088 357.961 594.481 354.077 593.685 C 350.192 592.89 345.995 361.38 353.881 359.789 C 361.767 358.198 369.888 357.362 378.125 357.362 C 444.02 357.362 497.5 410.842 497.5 476.737 z "
+       id="path552"
+       sodipodi:nodetypes="csssscc"
+       transform="matrix(0.329137,0.000000,0.000000,0.191279,15.94200,330.1104)" />
+    <path
+       style="font-size:12;fill:none;fill-rule:evenodd;stroke:#550081;stroke-width:5.93977;stroke-dasharray:none;"
+       d="M 497.5 476.737 C 497.5 542.632 444.02 596.112 378.125 596.112 C 374.007 596.112 369.937 595.903 365.925 595.495 C 361.914 595.088 357.961 594.481 354.077 593.685 C 350.192 592.89 345.995 361.38 353.881 359.789 C 361.767 358.198 369.888 357.362 378.125 357.362 C 444.02 357.362 497.5 410.842 497.5 476.737 z "
+       id="path577"
+       sodipodi:nodetypes="csssscc"
+       transform="matrix(0.240236,0.000000,0.000000,0.139318,53.38240,354.8819)" />
+  </g>
+  <text
+     style="fill:black;stroke:#540026;font-family:Bitstream Charter;font-style:normal;font-weight:normal;font-size:12;fill-opacity:1;stroke-opacity:1;stroke-width:0.852812;stroke-linejoin:miter;stroke-linecap:butt;stroke-dasharray:none;text-anchor:start;writing-mode:lr;"
+     x="81.1589076"
+     y="158.851767"
+     id="text617"
+     transform="scale(2.931479,2.931481)">
+    <tspan
+       x="81.1589050"
+       y="158.851761"
+       sodipodi:role="line"
+       id="tspan620">
+login</tspan>
+  </text>
+</svg>

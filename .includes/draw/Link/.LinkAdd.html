@@ -1,0 +1,75 @@
+<form action="index.php" method="POST" onSubmit="return checkForm(this); ">
+
+<script language="javascript">
+<!--
+    function checkForm(form) {
+
+        if(form.to_id.value == ""){
+                                                                      
+            alert("Please select a To!");
+            form.to_id.focus();
+            return false;
+                                                                                          
+        }
+                                                                                              
+    return true;
+                                                                                              
+    }
+-->
+</script>
+
+<input type="hidden" name="type" value="<?php echo $alink->type; ?>">
+<input type="hidden" name="from_id" value="<?php echo $alink->from_id; ?>">
+
+	<?php //extract the different components of the link string
+
+	$description = get_link_as_string($alink->type);
+	$array = explode(" ", $description);
+	$from_type = $array[0];
+	$relationship = $array[1];
+	$to_type = $array[2];
+
+    ?>
+
+<table class="link_edit">
+    <tr><td class="link_edit" align="center">
+        <table class="link_edit">
+            <tr><td class="link_main">
+                <p class="<?php echo $class; ?>"><?php echo $from_type.": ".Link::display_from($alink->from_id, $alink->type); ?>
+                </p>
+            </td></tr>
+            <tr><td class="link_main">
+                <p class="view_title">&nbsp;&nbsp;<?php echo $relationship; ?></p>
+            </td></tr>
+            <tr><td class="link_edit" align="right">
+                <p class="link_edit"><?php echo $to_type.":"; ?>&nbsp;<select name="to_id" size="1">
+                    <option value="">Select a 
+                    <?php
+                        $array = Link::get_to_links($alink->type);
+                        $type = Link::get_to_type($alink->type);
+                        $var = Link::get_name_from_type($type);
+
+						echo get_type_as_string($type)."</option>\n";
+
+                        foreach($array as $row){
+                            echo "<option value=\"".$row["id"]."\">".$row[$var]."</option>";
+                        }
+                    ?>
+                </select>
+            </td></tr>
+        </table>
+    </td><td class="link_edit" align="center" valign="top">
+        Description:<br class="link_edit">
+        <textarea name="description" rows="5" cols="50"></textarea>
+    </td></tr>
+    <tr><td class="link_edit" colspan="2" align="center">
+            <input type="submit" name="action" value="Save"> <input type="reset" value="Reset Form"> 
+    </td></tr>
+</table>
+
+</form>
+
+
+
+
+        

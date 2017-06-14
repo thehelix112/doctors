@@ -1,0 +1,41 @@
+<form action="index.php" method="POST" onSubmit="return checkForm(this); ">
+
+<script language="javascript">
+<!--
+function checkCommon(form) {
+    if(form.reference_id.value == ""){
+
+        alert("Please insert a Reference Id!");
+        form.reference_id.focus();
+        return false;
+                
+    }
+    if(form.title.value == ""){
+
+        alert("Please insert a Title!");
+        form.title.focus();
+        return false;
+                
+    }
+
+    return true;
+
+}
+-->
+</script>
+<br>
+<table class="reference_edit">
+    <tr><td class="reference_edit">
+        <table class="reference_edit">
+			<tr><td colspan="2">
+				<p class="reference_heading">Reference Details</p>
+			</td></tr>
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Identifier:
+                </p>
+            </td><td>
+                <input type="text" size="40" name="reference_id" value="<?php echo $aref->reference_id; ?>"/>
+            </td></tr>
+
+

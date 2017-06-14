@@ -1,0 +1,257 @@
+
+<script language="javascript">
+<!--
+function checkForm(form) {
+
+    if(!checkCommon(form)){
+        return false;
+    }
+
+    if(form.author.value == ""){
+
+        alert("Please insert a Author!");
+        form.author.focus();
+        return false;
+                
+    }
+    if(form.school.value == ""){
+
+        alert("Please insert a School!");
+        form.school.focus();
+        return false;
+                
+    }
+    if(form.year.value == ""){
+
+        alert("Please insert a Year!");
+        form.year.focus();
+        return false;
+                
+    }
+    if(form.thesis_type.value == ""){
+
+        alert("Please select a Thesis Type!");
+        form.thesis_type.focus();
+        return false;
+                
+    }
+
+    return true;
+
+}
+
+<?php    
+
+    $schools = array();
+
+    foreach($resources as $resource){
+	
+        if($resource["resource_type"] == get_type_as_string(TYPE_SCHOOL)){
+            $schools[] = $resource;
+        }
+    }
+    echo get_array_as_javascript_array($schools, "schools");
+?>
+
+var name;
+var address;
+var name_id = 0;
+var year_id = 1;
+var type_id = 2;
+var address_id = 3;
+var month_id = 4;
+
+function check_edit(text){
+
+    var form = text.form;
+
+	//if the values now match an existing school then select that school in school_select.
+	index = check_values(form);	
+
+	if(index > -1){
+	  form.school_select.selectedIndex = ++index;
+	  
+	} else {
+	  form.school_select.selectedIndex = 0;
+	}
+
+}
+
+function check_values(form){
+
+    for(it = 0; it < schools.length; it++){	
+
+	  if(form.school.value != schools[it]['name']) continue;
+	  if(form.address.value != schools[it]['address']) continue;
+	  return it;
+
+	}
+	
+	return -1;
+
+}
+
+function set_new_values(select){
+
+    var form = select.form;
+
+    if(select.value="new"){
+
+  	  name = form.school.value;
+	  address = form.address.value;
+
+	}
+
+}
+
+function school_selected(select){
+
+    var form = select.form;
+	var index = select.selectedIndex;
+
+    if(index == 0){
+
+	  form.school.value = name;
+	  form.address.value = address;
+
+
+	} else {
+
+	  index--;
+
+	  form.school.value = schools[index]['name'];
+	  form.address.value = schools[index]['address'];
+
+	}
+
+}
+
+
+-->
+</script>
+
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Title:
+                </p>
+            </td><td>
+                <input type="text" size="40" name="title" value="<?php echo $aref->title; ?>"/>
+            </td></tr>
+
+            <input type="hidden" name="reference_type" value="Thesis"/>
+            <?php if(isset($aref->id)){ ?>
+            <input type="hidden" name="id" value="<?php echo $aref->id; ?>"/>
+            <?php } ?>
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Author:
+                </p>
+            </td><td>
+                <input type="text" size="40" name="author" value="<?php echo $aref->author; ?>"/>
+            </td></tr>
+
+           
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Year:
+                </p>
+            </td><td>
+                <input type="text" size="40" name="year" value="<?php echo $aref->year; ?>"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Thesis Type:
+                </p>
+            </td><td>
+				<select name="thesis_type" size="1" cols="40">
+					<option value=""></option>
+					<option value="Phd" <?php if($aref->thesis_type == "Phd") echo " selected"; ?>>PhD</option>
+					<option value="Masters" <?php if($aref->thesis_type == "Masters") echo " selected"; ?>>Masters</option>
+				</select>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Month:
+            </td><td>
+                <?php include($GLOBALS["draw_includes_path"]."/.MonthEdit.html"); ?>
+            </td></tr>
+             <tr><td class="reference_edit">
+                 Type:
+            </td><td>
+                <input type="text" size="40" name="type" value="<?php echo $aref->OPTtype; ?>"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Keywords:
+            </td><td>
+                <input type="text" size="40" name="keywords" value="<?php echo $aref->OPTkeyword; ?>"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Note:
+            </td><td>
+                <input type="text" size="40" name="note" value="<?php echo $aref->OPTnote; ?>"/>
+            </td></tr>
+             <tr><td class="reference_edit">
+                Annote:
+            </td><td>
+                <input type="text" size="40" name="annote" value="<?php echo $aref->OPTannote; ?>"/>
+            </td></tr>
+
+			<tr><td colspan="2">&nbsp;</td></tr>	
+
+			<tr><td colspan="2"><p class="reference_heading">School Details</td></tr>
+
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Resource:
+                </p>
+            </td><td>
+				   <select name="school_select" size="1" cols="40" onChange="school_selected(this);" onFocus="set_new_values(this);">
+					 <option value="new">New</option>
+					 <?php
+					   foreach($schools as $school){
+
+					     $name = $school['name']." ".$school['year'];
+						 if(valid($school['type']) && valid($school['address'])) 
+						   $name .= ", ".$school['type'].":".$school['address'];
+					   
+						 if(strlen($name) > $GLOBALS["max_name_length"]) $name = substr($name, 0, $GLOBALS["max_name_length"]-3)."...";
+					     echo "<option value=\"".$school['id']."\"";
+			             if($school['id'] == $aref->resource_id) echo " selected";
+					     echo ">".$name."</option>"; 
+					   
+					   }
+					 ?>				  
+				  </select>
+            </td></tr>   
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Name:
+                </p>
+            </td><td>
+                <?php
+                    //print out an appropriate select statement
+                ?>
+                <input type="text" size="40" name="school" value="<?php echo $aref->school; ?>" onChange="javascript:check_edit(this);"/>
+            </td></tr> 
+            <tr><td class="reference_edit">
+                Address:
+            </td><td>
+                <input type="text" size="40" name="address" value="<?php echo $aref->OPTaddress; ?>" onChange="check_edit(this);"/>
+            </td></tr>         
+
+
+
+<script language="javascript">
+<!--
+
+	form = document.forms[1];
+
+	if(form.school_select.options[form.school_select.selectedIndex].value == "new"){
+
+		//if we don't already have a resource selected
+		check_edit(form.title);
+
+	}
+
+//-->
+</script>
+ 

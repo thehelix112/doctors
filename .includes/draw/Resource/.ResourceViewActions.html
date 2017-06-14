@@ -1,0 +1,18 @@
+</td><td valign="top" align="center">
+
+    <table class="view_actions" cellpadding="0" cellspacing="2">
+        <tr><td class="view_actions" align="center">
+                <?php echo get_action_as_link("Edit", $this->id, $_SESSION["object_type"], ACTION_EDIT); ?>
+        </td></tr>
+        <tr><td class="view_actions" align="center">
+                <?php echo get_action_as_link("Delete", $this->id, $_SESSION["object_type"], ACTION_DELETE); ?>
+        </td></tr>
+        <tr><td height="1" class="menu_divider"><img src="images/clear.gif" height="1"></td></tr>
+        <tr><td class="view_actions" align="center">
+                &nbsp;<?php $this->display_add("Categorise", $this->id, LINK_RESOURCE_IN_CATEGORY); ?>&nbsp;&nbsp;
+        </td></tr>
+
+    </table>
+
+</td></tr>
+</table>

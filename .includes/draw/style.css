@@ -1,0 +1,88 @@
+
+	TABLE.login_overall	        { width: 100%; height: 100%; 
+                                    background-color: white;}
+	TABLE.login_table	        { background-color: white; padding: 0px; 
+                                    border-style: none;}
+	TABLE.reference_edit        { background-color: white; padding: 0px; 
+                                    border-style: none;}
+	TABLE.menu_top              { background-color: white; padding: 0px; 
+                                    border-style: none; border-width: thin;}
+	TABLE.menu_subitem          { background-color: white; padding: 0px; 
+                                    border-style: none; border-width: thin;
+                                    width: 100%; }
+    TABLE.main                  {  }
+    TABLE.article_view          {  }
+    TABLE.article_main          {  }
+    TABLE.search_results        { border-style: solid; border-width: 0px; 
+                                    border-color: gray; }
+    TABLE.view_actions          {  }
+	TD.menu_divider				{ background-color: #540026; }
+	TD.menu_sub_divider			{ background-color: white; }
+	TD.login_overall        	{ background-color: white; }
+	TD.login_heading        	{ font-size: 12pt; font-weight: bold; 
+                                    padding: 5px 0px; }
+	TD.login_username       	{ padding: 5px 0px; }
+	TD.login_password       	{ padding: 5px 0px; }
+	TD.login_buttons        	{ text-align: right; padding: 5px 0px; }
+	TD.main_crumbs	        	{ text-align: right; }
+	TD.menu_top 	        	{ text-align: left;  }
+	TD.menu_spacer				{ width: 20px; height: 5px; }
+	TD.menu_item 	        	{ text-align: left; border-style: none;
+                                    border-width: thin; font-size: 12pt; 
+									font-weight: bold; background-color: #F9EFFF; }
+	TD.menu_subitem             { text-align: left; width: 100%; 
+                                    border-style: none;
+                                    border-width: thin; 
+									background-color: #F9EFFF; }
+	TD.menu_subitem_spacer      { width: 5px; }
+	TD.main_main	        	{  }
+	TD.main_menu	        	{ }
+	TD.article_top              { padding: 10px 10px; }
+	TD.category_top             { padding: 10px 10px; }
+	TD.article_main             { padding: 8px 8px; }
+	TD.category_main            { padding: 8px 8px; }
+	TD.article_bottom           {  }
+	TD.link_top                 { padding: 10px 10px; }
+	TD.link_main                { padding: 8px 8px; }
+	TD.link_bottom              {  }
+	TD.reference_edit           {  }
+	TD.link_edit                {  }
+	TD.search_results_top       { padding: 10px 10px; } 
+	TD.search_results_bottom    { padding: 10px 10px; } 
+	TD.search_item_dark         { padding: 10px 10px; background-color: #dddddd; }
+	TD.search_item_light        { padding: 10px 10px; background-color: #eeeeee; }
+    TD.view_actions             { background-color: #eeeeee; height: 20; }
+    P.view_categories           { font-size: 9pt; }
+    P.view_category_action      { font-size: 9pt; font-weight: bold}
+    P.resource_top               { font-weight: bold; }
+    P.article_top               { font-weight: bold; }
+    P.document_top               { font-weight: bold; }
+    P.article_main              {  }
+    P.link_top                  { font-weight: bold; }
+    P.link_main                 {  }
+    P.search_results_bottom     { font-weight: bold; }
+    P.search_results_top        { font-weight: bold; }
+    P.view_title                { font-size: 14pt; font-style: italic; }
+    P.view_reference_id         { font-size: 9pt; }
+    P.view_author               { font-weight: bold; }
+    P.view_source               { font-size: 9pt; }
+    P.mandatory                 { color: red; font-weight: bold; }
+    P.main                      { color: black; font-weight: normal; }
+    P.main_title                { color: black; font-weight: bold; 
+									color: #540026; font-size: 14pt; }
+    P.heading                   { color: black; text-align: left;
+                                    font-size: 28pt;
+                                    border-style: none;}
+    P.heading_name              { color: white; font-size: 11pt; 
+									font-weight: bold; }
+    P.reference_heading         { font-weight: bold; text-align: center; }
+
+
+    P.footer                    { color: #333333; font-weight: normal; font-size: 9pt; }
+    BR.reference_edit           {  }
+    UL.main                     {  }
+    LI.main                     {  }
+
+	A							{ color: #550081; text-decoration: none; }
+	A:hover						{ color: #B3005F; }
+	A:active					{ color: #540026; }

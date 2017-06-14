@@ -1,0 +1,28 @@
+
+Author: David Andrews
+Date: 03/04/2004
+
+Title: Doctors Online TODO
+
+
+1. - Shockwave tutorial and help
+2. - Categories must have their parent re-set when the parent is deleted. They become orphans with no parent and thus, root nodes.
+     DONE!
+3. - Add default name for documents.
+     DONE!
+4. - Change link between references for citation to be more intutitive.
+     DONE!
+5. - Add link back from document to its reference.
+     DONE!
+6. - Ensure all links between things have a common appearance.
+     DONE!
+7. - Bring Category View into line with other view.
+	 DONE!
+8. - Ensure only users' objects appear in drop down lists
+ 	 DONE!
+9. - Redo the views of edit references to make it clearer which items come from resources.
+10. - Add ordering options to reference views, on author, on title, asc, desc.
+11. - Make the look of the Link view page more intuitive
+	  DONE!
+12. - Make default behaviour that after a Save it goes back to View.
+	  DONE!

@@ -1,0 +1,58 @@
+
+    
+    <script language="javascript">
+    <!--
+    //-->
+    </script>
+
+    <table>
+        <tr><td>
+                <p class="main">Reference Type:</p>
+        </td><td>
+            <form action="index.php" method="POST" name="form">
+			  
+                <select name="object_type" size="1" onChange="if(this.value != '') submit();">
+                    <option value="">
+                        Select from list</option>
+                    <option value="<?php echo get_type_as_string(TYPE_ARTICLE)."\"";
+                        if($_SESSION["object_type"] == TYPE_ARTICLE) echo " selected"; ?>>
+                        Journal Article</option>
+                    <option value="<?php echo get_type_as_string(TYPE_INPROCEEDINGS)."\"";
+                        if($_SESSION["object_type"] == TYPE_INPROCEEDINGS) echo " selected"; ?>>
+                        Conference Paper</option>
+                        <option value="<?php echo get_type_as_string(TYPE_INCOLLECTION)."\"";
+                        if($_SESSION["object_type"] == TYPE_INCOLLECTION) echo " selected"; ?>>
+                        Collection Article</option>
+                    <option value="<?php echo get_type_as_string(TYPE_INBOOK)."\"";
+                        if($_SESSION["object_type"] == TYPE_INBOOK) echo " selected"; ?>>
+                        Book Section</option>
+                    <!--<option value="<?php echo get_type_as_string(TYPE_PROCEEDINGS)."\"";
+                        if($_SESSION["object_type"] == TYPE_PROCEEDINGS) echo " selected"; ?>>
+                        Conference Proceedings</option>-->
+                    <option value="<?php echo get_type_as_string(TYPE_BOOKLET)."\"";
+                        if($_SESSION["object_type"] == TYPE_BOOKLET) echo " selected"; ?>>
+                        Booklet</option>
+                    <option value="<?php echo get_type_as_string(TYPE_THESIS)."\"";
+                        if($_SESSION["object_type"] == TYPE_THESIS) echo " selected"; ?>>
+                        Thesis</option>
+                    <!--<option value="<?php echo get_type_as_string(TYPE_MASTERSTHESIS)."\"";
+                        if($_SESSION["object_type"] == TYPE_MASTERSTHESIS) echo " selected"; ?>>
+                        Masters Thesis</option>-->
+                    <option value="<?php echo get_type_as_string(TYPE_TECHREPORT)."\"";
+                        if($_SESSION["object_type"] == TYPE_TECHREPORT) echo " selected"; ?>>
+                        Technical Report</option>
+                    <option value="<?php echo get_type_as_string(TYPE_MANUAL)."\"";
+                        if($_SESSION["object_type"] == TYPE_MANUAL) echo " selected"; ?>>
+                        Manual</option>
+                        <option value="<?php echo get_type_as_string(TYPE_UNPUBLISHED)."\"";
+                        if($_SESSION["object_type"] == TYPE_UNPUBLISHED) echo " selected"; ?>>
+                        Unpublished</option>
+                    <option value="<?php echo get_type_as_string(TYPE_MISC)."\"";
+                        if($_SESSION["object_type"] == TYPE_MISC) echo " selected"; ?>>
+                        Miscellaneous</option>
+                </select>
+            </form>
+
+        </td></tr>
+    </table>
+

@@ -1,0 +1,89 @@
+<form action="index.php" method="POST" onSubmit="return checkForm(this); ">
+
+<script language="javascript">
+<!--
+function checkCommon(form) {
+    if(form.username.value == ""){
+
+        alert("Please insert a Username!");
+        form.username.focus();
+        return false;
+                
+    }
+
+    if(form.fullname.value == ""){
+
+        alert("Please insert a Full Name!");
+        form.fullname.focus();
+        return false;
+                
+    }
+
+    return true;
+
+}
+-->
+</script>
+<br>
+<table class="user_edit">
+    <tr><td class="user_edit">
+        <table class="user_edit">
+            <tr><td class="user_edit">
+                <p class="mandatory">
+                Username:
+                </p>
+            </td><td>
+                <input type="text" size="30" name="username" value="<?php echo $auser->username; ?>"/>
+            </td></tr>
+            <tr><td class="user_edit">
+                <p class="mandatory">
+                Full Name:
+                </p>
+            </td><td>
+                <input type="text" size="30" name="fullname" value="<?php echo $auser->fullname; ?>"/>
+            </td></tr>
+            <tr><td class="user_edit">
+                <p class="mandatory">
+                Administrator:
+                </p>				
+			</td><td>
+                Yes <input type="radio" name="administrator" value="true" 
+				  <?php if($auser->administrator == "true") echo "checked"; ?> />
+				No <input type="radio" name="administrator" value="false" 
+				  <?php if($auser->administrator == "false" || !isset($auser->administrator)) echo "checked"; ?> />
+			</td></tr>     
+
+
+<script language="javascript">
+<!--
+function checkForm(form) {
+
+    if(!checkCommon(form)){
+        return false;
+    }
+
+    return true;
+
+}
+-->
+</script>
+
+
+            <?php if(isset($auser->id)){ ?>
+            <input type="hidden" name="id" value="<?php echo $auser->id; ?>"/>
+            <?php } ?>
+            <tr><td colspan="2" align="center">
+                    &nbsp;
+            </td></tr>
+            <tr><td colspan="2" align="center">
+                    <p class="mandatory">Items in red are mandatory</p>
+            </td></tr>
+
+        </table>
+    </td></tr>
+    <tr><td class="user_edit" colspan="2" align="center">
+            <input type="submit" name="action" value="Save"> <input type="reset" value="Reset Form"> 
+    </td></tr>
+</table>
+
+</form>

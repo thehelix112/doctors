@@ -1,0 +1,6 @@
+    <tr><td class="<?php echo $bgcolour; ?>">
+        <a href="index.php?<?php echo "object_id=".$this->id."&object_type=".get_type_as_string(TYPE_USER)."&action=View"; ?>"><?php echo $this->fullname; ?></a></p>
+    </td><td valign="top" class="<?php echo $bgcolour; ?>">
+        <?php echo get_action_as_link("Edit", $this->id, TYPE_USER, ACTION_EDIT); ?>&nbsp;&nbsp;<?php echo get_action_as_link("Change Password", $this->id, TYPE_USER, ACTION_EDIT_PASSWORD); ?>&nbsp;&nbsp;<?php echo get_action_as_link("Delete", $this->id, TYPE_USER, ACTION_DELETE); ?>
+    </td></tr>
+

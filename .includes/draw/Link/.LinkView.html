@@ -1,0 +1,46 @@
+
+<table class="link_view">
+    <tr><td class="link_top" align="left">
+        <p class="link_top">
+        View Link</p>
+    </td><td class="link_top" align="left">
+        <p class="link_top">
+        Actions</p>
+    </td><tr>
+
+	<?php //extract the different components of the link string
+
+	$description = get_link_as_string($alink->type);
+	$array = explode(" ", $description);
+	$from_type = $array[0];
+	$relationship = $array[1];
+	$to_type = $array[2];
+
+    ?>
+
+    <tr><td class="link_top" align="center">
+        <table class="link_main">
+            <tr><td class="link_main">
+                <p class="<?php echo $class; ?>"><?php echo $from_type.": ".Link::display_from($alink->from_id, $alink->type); ?>
+                </p>
+            </td></tr>
+            <tr><td class="link_main">
+                <p class="view_title">&nbsp;&nbsp;<?php echo $relationship; ?></p>
+            </td></tr>
+            <tr><td class="link_main">
+                <p class="<?php echo $class; ?>">
+                <?php echo $to_type.": ".Link::display_to($alink->to_id, $alink->type); ?>
+                </p>
+            </td></tr>
+            <?php if(valid($alink->description)){ ?>
+            <tr><td class="link_bottom" colspan="2" align="center">
+                <p class="link_main">Description:</p>  
+            </td></tr>
+            <tr><td class="link_bottom" colspan="2">
+                    <?php echo $alink->description; ?>
+            </td></tr>
+            <?php } ?>
+       </table>
+
+
+        

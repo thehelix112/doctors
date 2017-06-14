@@ -1,0 +1,39 @@
+
+<table class="resource_view">
+    <tr><td class="resource_top" align="left">
+            <p class="resource_top">
+            View Resource</p>
+        </td><td class="resource_top" align="left">
+            <p class="resource_top">
+            Action</p>
+        </td><tr>
+    <tr><td class="resource_top" align="center">
+        <table class="resource_main">
+            <tr><td class="resource_main" align="right">
+                <p class="resource_main">Name:</p>
+            </td><td colspan="3">
+                <p class="view_title"><?php echo $this->name; ?></p>
+            </td></tr>
+            <tr><td class="resource_main" align="right">
+                <p class="resource_main">URL:</p>
+            </td><td>
+            <p class="<?php echo $class; ?>"><?php echo $this->urlmain; ?></p>
+            </td></tr>
+            <tr><td class="resource_main" align="right">
+                <p class="resource_main">Watch:</p>
+            </td><td>
+                <p class="resource_main"><?php echo $this->watch; ?></p>
+            </td></tr>
+            <?php if($ares->watch == "Yes"){ ?>
+            <tr><td class="resource_main" align="right">
+                <p class="resource_main">Watch URL:</p>
+            </td><td>
+                <p class="resource_main"><?php echo $this->watchurl; ?></p>
+            </td></tr>
+            <tr><td class="resource_main" align="right">
+                <p class="resource_main">Watch Keywords:</p>
+            </td><td>
+                <p class="resource_main"><?php echo $this->watchkeys; ?></p>
+            </td></tr>
+            <?php } ?>
+

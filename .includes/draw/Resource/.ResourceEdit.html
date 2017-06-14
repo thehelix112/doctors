@@ -1,0 +1,147 @@
+<form action="index.php" method="POST" onSubmit="return checkForm(this); ">
+
+<script language="javascript">
+<!--
+function checkCommon(form) {
+    if(form.name.value == ""){
+
+        alert("Please insert a Name!");
+        form.name.focus();
+        return false;
+                
+    }
+
+    return true;
+
+}
+-->
+</script>
+<br>
+<table class="resource_edit">
+    <tr><td class="resource_edit">
+        <table class="resource_edit">
+            <tr><td class="resource_edit">
+                <p class="mandatory">
+                Name:
+                </p>
+            </td><td>
+                <input type="text" size="30" name="name" value="<?php echo $ares->name; ?>"/>
+            </td></tr>
+            <tr><td class="resource_edit">
+                <p class="mandatory">
+                Type:
+                </p>
+            </td><td>
+                <select name="type" size="1">
+                    <option value="">
+                        Select from list</option>
+                    <option value="<?php echo get_type_as_string(TYPE_JOURNAL)."\"";
+                        if($ares->type == get_type_as_string(TYPE_JOURNAL)) echo " selected"; ?>>
+                        Journal</option>
+                    <option value="<?php echo get_type_as_string(TYPE_CONFERENCE)."\"";
+                        if($ares->type == get_type_as_string(TYPE_CONFERENCE)) echo " selected"; ?>>
+                        Conference</option>
+                    <option value="<?php echo get_type_as_string(TYPE_BOOK)."\"";
+                        if($ares->type == get_type_as_string(TYPE_BOOK)) echo " selected"; ?>>
+                        Book</option>
+                    <option value="<?php echo get_type_as_string(TYPE_SCHOOL)."\"";
+                        if($ares->type == get_type_as_string(TYPE_SCHOOL)) echo " selected"; ?>>
+                        Educational Institution</option>
+                    <option value="<?php echo get_type_as_string(TYPE_COMPANY)."\"";
+                        if($ares->type == get_type_as_string(TYPE_COMPANY)) echo " selected"; ?>>
+                        Company</option>
+                </select>
+            </td></tr>
+
+<script language="javascript">
+<!--
+function checkForm(form) {
+
+    if(!checkCommon(form)){
+        return false;
+    }
+
+    if(form.type.value == ""){
+
+        alert("Please select a Type!");
+        form.type.focus();
+        return false;
+                
+    }
+
+    if(form.urlmain.value == ""){
+
+        alert("Please insert a URL!");
+        form.urlmain.focus();
+        return false;
+                
+    }
+
+    if(form.watch[0].checked && form.watchurl.value == ""){
+
+        alert("Please specify a URL to watch!");
+        form.watchurl.focus();
+        return false;
+
+    }
+
+    if(form.watch[0].checked && form.watchkeys.value == ""){
+
+        alert("Please specify which keywords to watch for!");
+        form.watchkeys.focus();
+        return false;
+
+    }
+    return true;
+
+}
+-->
+</script>
+
+
+            <?php if(isset($ares->id)){ ?>
+            <input type="hidden" name="id" value="<?php echo $ares->id; ?>"/>
+            <?php } ?>
+            <tr><td class="resource_edit">
+                <p class="mandatory">
+                URL:
+                </p>
+            </td><td>
+                <input type="text" size="30" name="urlmain" value="<?php echo $ares->urlmain; ?>"/>
+            </td></tr>
+            <tr><td class="resource_edit">
+                <p class="mandatory">
+                Watch:
+                </p>
+            </td><td>
+                Yes <input type="radio" name="watch" value="Yes" <?php if($ares->watch == "Yes") echo "checked"; ?> />
+                No <input type="radio" name="watch" value="No" <?php if($ares->watch == "No" || !isset($ares->watch)) echo "checked"; ?> />
+            </td></tr>            
+            <tr><td class="resource_edit">
+                Watch URL:
+            </td><td>
+                <input type="text" size="30" name="watchurl" value="<?php echo $ares->watchurl; ?>"/>
+            </td></tr>
+            <tr><td class="resource_edit">
+                Watch Keywords:
+            </td><td>
+                <input type="text" size="30" name="watchkeys" value="<?php echo $ares->watchkeys; ?>"/>
+            </td></tr>
+            <tr><td colspan="2" align="center">
+                    &nbsp;
+            </td></tr>
+            <tr><td colspan="2" align="center">
+                    <p class="mandatory">Items in red are mandatory</p>
+            </td></tr>
+
+        </table>
+    </td><td class="resource_edit" align="center" valign="top">
+        Description:<br class="resource_edit">
+        <textarea name="description" rows="5" cols="50"><?php echo $ares->description; ?></textarea>
+    </td></tr>
+    <tr><td class="resource_edit" colspan="2" align="center">
+            <input type="submit" name="action" value="Save"> <input type="reset" value="Reset Form"> 
+    </td></tr>
+</table>
+
+</form>

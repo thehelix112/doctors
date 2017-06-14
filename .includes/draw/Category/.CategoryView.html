@@ -1,0 +1,109 @@
+
+<table class="resource_view">
+    <tr><td class="resource_top" align="left">
+            <p class="resource_top">
+            View Category</p>
+        </td><td class="resource_top" align="left">
+            <p class="resource_top">
+            Action</p>
+        </td><tr>
+    <tr><td class="resource_top" align="center">
+        <table class="resource_main">
+
+			<?php $data = Link::get_links($acat->id, ANY, LINK_CATEGORY_SUB_OF_CATEGORY);
+
+            if(count($data) > 0){ ?>
+            <tr><td class="resource_main" align="right">
+                <p class="resource_main">Parent:</p>
+            </td><td colspan="3">
+                <p class="view_categories"><?php echo Link::display_links($data, LINK_TO); ?></p>
+            </td></tr>
+            <?php } ?>
+
+
+            <tr><td class="resource_main" align="right">
+                <p class="resource_main">Name:</p>
+            </td><td colspan="3">
+                <p class="view_title"><?php echo $acat->name; ?></p>
+            </td></tr>
+
+            <?php 
+                $data = Link::get_links(ANY, $acat->id, LINK_CATEGORY_SUB_OF_CATEGORY);
+                if(count($data) > 0){
+                ?>
+            <tr><td class="resource_bottom" align="right" valign="top">
+                <p class="resource_main">Children:</p>
+            </td><td colspan="3">
+                <p class="view_categories">
+                <?php 
+                    echo Link::display_links($data, LINK_FROM, "<br/>\n");
+                    ?>
+
+                </p>
+            </td></tr>
+            <?php } ?>
+
+		    <tr><td class="resource_bottom" colspan="4">
+		        &nbsp;
+		    </td></tr>
+
+            <tr><td class="resource_bottom" align="right" valign="top">
+                <p class="resource_main">References:</p>
+            </td><td colspan="3">
+                <p class="view_categories"><?php 
+					  $data = Link::get_links(ANY, $acat->id, LINK_REFERENCE_IN_CATEGORY);
+					  
+					  if(count($data) > 0){
+					    echo Link::display_links($data, LINK_FROM, "<br/>\n");
+					  } ?>
+            </td></tr>
+
+            <tr><td class="resource_bottom" align="right" valign="top">
+                <p class="resource_main">Resources:</p>
+            </td><td colspan="3">
+                <p class="view_categories"><?php 
+					  $data = Link::get_links(ANY, $acat->id, LINK_RESOURCE_IN_CATEGORY);
+					  
+					  if(count($data) > 0){
+					    echo Link::display_links($data, LINK_FROM, "<br/>\n");
+					  } ?>
+            </td></tr>
+
+		    <?php if(valid($acat->description)){ ?>
+		    <tr><td class="resource_bottom" colspan="4" align="center">
+		        <p class="resource_main">Description:</p>  
+		    </td></tr>
+		    <tr><td class="resource_bottom" colspan="4">
+		        <?php echo $acat->description; ?>
+		    </td></tr>
+		    <?php } ?>
+
+
+		</table>
+
+	</td><td valign="top" align="center">
+
+	    <table class="view_actions" cellpadding="0" cellspacing="2">
+    	    <tr><td class="view_actions" align="center">
+	                <?php echo get_action_as_link("Edit", $acat->id, $_SESSION["object_type"], ACTION_EDIT); ?>
+	        </td></tr>
+	        <tr><td class="view_actions" align="center">
+	                &nbsp;<?php echo get_action_as_link("Delete", $acat->id, $_SESSION["object_type"], ACTION_DELETE); ?>&nbsp;&nbsp;
+	        </td></tr>
+
+	    </table>
+
+	</td></tr>
+
+</table>
+
+
+
+
+
+
+
+
+
+
+

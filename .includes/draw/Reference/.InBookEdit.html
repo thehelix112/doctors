@@ -1,0 +1,320 @@
+
+<script language="javascript">
+<!--
+function checkForm(form) {
+
+    if(!checkCommon(form)){
+        return false;
+    }
+
+    if(form.author.value == ""){
+
+        alert("Please insert a Author!");
+        form.author.focus();
+        return false;
+                
+    }
+    if(form.book.value == ""){
+
+        alert("Please insert a Book!");
+        form.book.focus();
+        return false;
+                
+    }
+    if(form.year.value == ""){
+
+        alert("Please insert a Year!");
+        form.year.focus();
+        return false;
+                
+    }
+
+    return true;
+
+}
+
+<?php    
+
+    $books = array();
+
+    foreach($resources as $resource){
+	
+        if($resource["resource_type"] == get_type_as_string(TYPE_BOOK)){
+            $books[] = $resource;
+        }
+    }
+    echo get_array_as_javascript_array($books, "books");
+?>
+
+var name;
+var year;
+var volume;
+var number;
+var month;
+var name_id = 0;
+var year_id = 1;
+var volume_id = 2;
+var number_id = 3;
+var month_id = 4;
+
+function check_edit(text){
+
+    var form = text.form;
+
+	//if the values now match an existing book then select that book in book_select.
+	index = check_values(form);	
+
+	if(index > -1){
+	  form.book_select.selectedIndex = ++index;
+	  
+	} else {
+	  form.book_select.selectedIndex = 0;
+	}
+
+}
+
+function check_values(form){
+
+    for(it = 0; it < books.length; it++){	
+
+	  if(form.title.value != books[it]['name']) continue;
+	  if(form.year.value != books[it]['year']) continue;
+	  if(form.publisher.value != books[it]['publisher']) continue;
+	  if(form.volume.value != books[it]['volume']) continue;
+	  if(form.number.value != books[it]['number']) continue;
+	  if(form.month.value != books[it]['month']) continue;
+	  if(form.author.value != books[it]['author']) continue;
+	  if(form.editor.value != books[it]['editor']) continue;
+	  if(form.series.value != books[it]['series']) continue;
+	  if(form.type.value != books[it]['type']) continue;
+	  if(form.address.value != books[it]['address']) continue;
+	  if(form.edition.value != books[it]['edition']) continue;
+
+
+	  return it;
+
+	}
+	
+	return -1;
+
+}
+
+function set_new_values(select){
+
+    var form = select.form;
+
+    if(select.value="new"){
+
+  	  name = form.title.value;
+	  year = form.year.value;
+	  publisher = form.publisher.value;
+	  volume = form.volume.value;
+	  number = form.number.value;
+	  month = form.month.value;	 
+	  author = form.author.value;	 	
+	  editor = form.editor.value;	 	
+	  series = form.series.value;	 	
+	  type = form.type.value;	 	
+	  address = form.address.value;	 	
+	  edition = form.edition.value;	 	
+
+	}
+
+}
+
+function book_selected(select){
+
+    var form = select.form;
+	var index = select.selectedIndex;
+
+    if(index == 0){
+
+	  form.title.value = name;
+	  form.year.value = year;
+	  form.publisher.value = publisher;
+	  form.volume.value = volume;
+	  form.number.value = number;
+	  form.month.value = month;
+	  form.author.value = author;
+	  form.editor.value = editor;
+	  form.series.value = series;
+	  form.type.value = type;
+	  form.address.value = address;
+	  form.edition.value = edition;
+
+
+	} else {
+
+	  index--;
+
+	  form.title.value = books[index]['name'];
+	  form.year.value = books[index]['year'];
+	  form.publisher.value = books[index]['publisher'];
+	  form.volume.value = books[index]['volume'];
+	  form.number.value = books[index]['number'];
+	  form.month.value = books[index]['month'];
+	  form.author.value = books[index]['author'];
+	  form.editor.value = books[index]['editor'];
+	  form.series.value = books[index]['series'];
+	  form.type.value = books[index]['type'];
+	  form.address.value = books[index]['address'];
+	  form.edition.value = books[index]['edition'];
+	
+
+	}
+
+}
+
+
+-->
+</script>
+
+            <input type="hidden" name="reference_type" value="InBook"/>
+            <?php if(isset($aref->id)){ ?>
+            <input type="hidden" name="id" value="<?php echo $aref->id; ?>"/>
+            <?php } ?>
+
+            <tr><td class="reference_edit">
+                <p class="mandatory">Chapter:
+            </td><td>
+                <input type="text" size="40" name="chapter" value="<?php echo $aref->chapter; ?>"/>
+            </td></tr>
+
+            <tr><td class="reference_edit">
+                Keywords:
+            </td><td>
+                <input type="text" size="40" name="keywords" value="<?php echo $aref->OPTkey; ?>"/>
+            </td></tr>
+             <tr><td class="reference_edit">
+                Pages:
+            </td><td>
+                <input type="text" size="40" name="pages" value="<?php echo $aref->OPTpages; ?>"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Note:
+            </td><td>
+                <input type="text" size="40" name="note" value="<?php echo $aref->OPTnote; ?>"/>
+            </td></tr>
+             <tr><td class="reference_edit">
+                Annote:
+            </td><td>
+                <input type="text" size="40" name="annote" value="<?php echo $aref->OPTannote; ?>"/>
+            </td></tr>
+
+			<tr><td colspan="2">&nbsp;</td></tr>	
+
+			<tr><td colspan="2"><p class="reference_heading">Book Details</td></tr>
+
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Author:
+                </p>
+            </td><td>
+                <input type="text" size="40" name="author" value="<?php echo $aref->author; ?>" onChange="javascript:check_edit(this);" />
+            </td></tr>
+
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Resource:
+                </p>
+            </td><td>
+				   <select name="book_select" size="1" cols="40" onChange="book_selected(this);" onFocus="set_new_values(this);">
+					 <option value="new">New</option>
+					 <?php
+					   foreach($books as $book){
+
+					     $name = $book['name']." ".$book['year'];
+						 if(valid($book['volume']) && valid($book['number'])) 
+						   $name .= ", ".$book['volume'].":".$book['number'];
+					   
+						 if(strlen($name) > $GLOBALS["max_name_length"]) $name = substr($name, 0, $GLOBALS["max_name_length"]-3)."...";
+					     echo "<option value=\"".$book['id']."\"";
+
+			             if($book['id'] == $aref->resource_id) echo " selected";
+					     echo ">".$name."</option>"; 
+					   
+					   }
+					 ?>				  
+				  </select>
+            </td></tr>            
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Title:
+                </p>
+            </td><td>
+                <?php
+                    //print out an appropriate select statement
+                ?>
+                <input type="text" size="40" name="title" value="<?php echo $aref->title; ?>" onChange="javascript:check_edit(this);"/>
+            </td></tr>            
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Year:
+                </p>
+            </td><td>
+                <input type="text" size="40" name="year" value="<?php echo $aref->year; ?>" onChange="check_edit(this);"/>
+            </td></tr>
+
+            <tr><td class="reference_edit">
+                <p class="mandatory">Editor:
+            </td><td>
+                <input type="text" size="40" name="editor" value="<?php echo $aref->editor; ?>" onChange="javascript:check_edit(this);"/>
+            </td></tr>
+
+            <tr><td class="reference_edit">
+                <p class="mandatory">Publisher:
+            </td><td>
+                <input type="text" size="40" name="publisher" value="<?php echo $aref->publisher; ?>" onChange="javascript:check_edit(this);"/>
+            </td></tr>
+
+            <tr><td class="reference_edit">
+                Month:
+            </td><td>
+                <?php include($GLOBALS["draw_includes_path"]."/.MonthEdit.html"); ?>
+            </td></tr>
+             <tr><td class="reference_edit">
+                 Volume:
+            </td><td>
+                <input type="text" size="40" name="volume" value="<?php echo $aref->OPTvolume; ?>" onChange="check_edit(this);"/>
+            </td></tr>
+             <tr><td class="reference_edit">
+                Number:
+            </td><td>
+                <input type="text" size="40" name="number" value="<?php echo $aref->OPTnumber; ?>" onChange="check_edit(this);"/>
+            </td></tr>
+
+            <tr><td class="reference_edit">
+                Series:
+            </td><td>
+                <input type="text" size="40" name="series" value="<?php echo $aref->OPTseries; ?>" onChange="javascript:check_edit(this);"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Address:
+            </td><td>
+                <input type="text" size="40" name="address" value="<?php echo $aref->OPTaddress; ?>" onChange="javascript:check_edit(this);"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Edition:
+            </td><td>
+                <input type="text" size="40" name="edition" value="<?php echo $aref->OPTedition; ?>" onChange="javascript:check_edit(this);"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Type:
+            </td><td>
+                <input type="text" size="40" name="type" value="<?php echo $aref->OPTtype; ?>" onChange="javascript:check_edit(this);"/>
+            </td></tr>
+
+<script language="javascript">
+<!--
+
+	form = document.forms[1];
+
+	if(form.book_select.options[form.book_select.selectedIndex].value == "new"){
+
+		//if we don't already have a resource selected
+		check_edit(form.title);
+
+	}
+
+//-->
+</script>

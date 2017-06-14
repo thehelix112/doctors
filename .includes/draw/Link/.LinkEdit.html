@@ -1,0 +1,48 @@
+<form action="index.php" method="POST" onSubmit="return checkForm(this); ">
+<input type="hidden" name="object_id" value="<?php echo $alink->id; ?>">
+<input type="hidden" name="from_id" value="<?php echo $alink->from_id; ?>">
+<input type="hidden" name="to_id" value="<?php echo $alink->to_id; ?>">
+<input type="hidden" name="type" value="<?php echo $alink->type; ?>">
+<input type="hidden" name="id" value="<?php echo $alink->id; ?>">
+
+	<?php //extract the different components of the link string
+
+	$description = get_link_as_string($alink->type);
+	$array = explode(" ", $description);
+	$from_type = $array[0];
+	$relationship = $array[1];
+	$to_type = $array[2];
+
+    ?>
+
+<table class="link_edit">
+    <tr><td class="link_edit" valign="center">
+        <table class="link_edit">
+            <tr><td class="link_main">
+                <p class="<?php echo $class; ?>"><?php echo $from_type.": ".Link::display_from($alink->from_id, $alink->type); ?>
+                </p>
+            </td></tr>
+            <tr><td class="link_main">
+                <p class="view_title">&nbsp;&nbsp;<?php echo $relationship; ?></p>
+            </td></tr>
+            <tr><td class="link_main">
+                <p class="<?php echo $class; ?>">
+                <?php echo $to_type.": ".Link::display_to($alink->to_id, $alink->type); ?>
+                </p>
+            </td></tr>
+        </table>
+    </td><td class="link_edit" align="center" valign="top">
+        Description:<br class="link_edit">
+        <textarea name="description" rows="5" cols="50"><?php echo $alink->description; ?></textarea>
+    </td></tr>
+    <tr><td class="link_edit" colspan="2" align="center">
+            <input type="submit" name="action" value="Save"> <input type="reset" value="Reset Form"> 
+    </td></tr>
+</table>
+
+</form>
+
+
+
+
+        

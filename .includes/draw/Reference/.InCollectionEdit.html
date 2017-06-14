@@ -1,0 +1,287 @@
+
+<script language="javascript">
+<!--
+function checkForm(form) {
+
+    if(!checkCommon(form)){
+        return false;
+    }
+
+    if(form.author.value == ""){
+
+        alert("Please insert a Author!");
+        form.author.focus();
+        return false;
+                
+    }
+    if(form.collection.value == ""){
+
+        alert("Please insert a Collection!");
+        form.collection.focus();
+        return false;
+                
+    }
+    if(form.year.value == ""){
+
+        alert("Please insert a Year!");
+        form.year.focus();
+        return false;
+                
+    }
+
+    return true;
+
+}
+
+<?php    
+
+    $collections = array();
+
+    foreach($resources as $resource){
+	
+        if($resource["resource_type"] == get_type_as_string(TYPE_COLLECTION)){
+            $collections[] = $resource;
+        }
+    }
+    echo get_array_as_javascript_array($collections, "collections");
+?>
+
+var name;
+var year;
+var volume;
+var number;
+var month;
+var name_id = 0;
+var year_id = 1;
+var volume_id = 2;
+var number_id = 3;
+var month_id = 4;
+
+function check_edit(text){
+
+    var form = text.form;
+
+	//if the values now match an existing collection then select that collection in collection_select.
+	index = check_values(form);	
+
+	if(index > -1){
+	  form.collection_select.selectedIndex = ++index;
+	  
+	} else {
+	  form.collection_select.selectedIndex = 0;
+	}
+
+}
+
+function check_values(form){
+
+    for(it = 0; it < collections.length; it++){	
+
+	  if(form.booktitle.value != collections[it]['name']) continue;
+	  if(form.year.value != collections[it]['year']) continue;
+	  if(form.volume.value != collections[it]['volume']) continue;
+	  if(form.number.value != collections[it]['number']) continue;
+	  if(form.month.value != collections[it]['month']) continue;
+	  return it;
+
+	}
+	
+	return -1;
+
+}
+
+function set_new_values(select){
+
+    var form = select.form;
+
+    if(select.value="new"){
+
+  	  name = form.booktitle.value;
+	  year = form.year.value;
+	  volume = form.volume.value;
+	  number = form.number.value;
+	  month = form.month.value;	 
+
+	}
+
+}
+
+function collection_selected(select){
+
+    var form = select.form;
+	var index = select.selectedIndex;
+
+    if(index == 0){
+
+	  form.booktitle.value = name;
+	  form.year.value = year;
+	  form.volume.value = volume;
+	  form.number.value = number;
+	  form.month.value = month;	  
+
+	} else {
+
+	  index--;
+
+	  form.booktitle.value = collections[index]['name'];
+	  form.year.value = collections[index]['year'];
+	  form.volume.value = collections[index]['volume'];
+	  form.number.value = collections[index]['number'];
+	  form.month.value = collections[index]['month'];
+
+	}
+
+}
+
+
+-->
+</script>
+
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Title:
+                </p>
+            </td><td>
+                <input type="text" size="40" name="title" value="<?php echo $aref->title; ?>"/>
+            </td></tr>
+
+            <input type="hidden" name="reference_type" value="InCollection"/>
+            <?php if(isset($aref->id)){ ?>
+            <input type="hidden" name="id" value="<?php echo $aref->id; ?>"/>
+            <?php } ?>
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Author:
+                </p>
+            </td><td>
+                <input type="text" size="40" name="author" value="<?php echo $aref->author; ?>"/>
+            </td></tr>
+
+            <tr><td class="reference_edit">
+                Keywords:
+            </td><td>
+                <input type="text" size="40" name="keywords" value="<?php echo $aref->OPTkey; ?>"/>
+            </td></tr>
+             <tr><td class="reference_edit">
+                Pages:
+            </td><td>
+                <input type="text" size="40" name="pages" value="<?php echo $aref->OPTpages; ?>"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Note:
+            </td><td>
+                <input type="text" size="40" name="note" value="<?php echo $aref->OPTnote; ?>"/>
+            </td></tr>
+             <tr><td class="reference_edit">
+                Annote:
+            </td><td>
+                <input type="text" size="40" name="annote" value="<?php echo $aref->OPTannote; ?>"/>
+            </td></tr>
+ 
+
+
+            <tr><td class="reference_edit">
+                Edition:
+            </td><td>
+                <input type="text" size="40" name="edition" value="<?php echo $aref->OPTedition; ?>"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Type:
+            </td><td>
+                <input type="text" size="40" name="type" value="<?php echo $aref->OPTtype; ?>"/>
+            </td></tr>
+ 
+
+			<tr><td colspan="2">&nbsp;</td></tr>	
+
+			<tr><td colspan="2"><p class="reference_heading">Resource Details</td></tr>
+
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Resource:
+                </p>
+            </td><td>
+				   <select name="collection_select" size="1" cols="40" onChange="collection_selected(this);" onFocus="set_new_values(this);">
+					 <option value="new">New</option>
+					 <?php
+					   foreach($collections as $collection){
+
+					     $name = $collection['name']." ".$collection['year'];
+						 if(valid($collection['volume']) && valid($collection['number'])) 
+						   $name .= ", ".$collection['volume'].":".$collection['number'];
+					   
+					     echo "<option value=\"".$collection['id']."\"";
+			             if($collection['id'] == $aref->resource_id) echo " selected";
+					     echo ">".$name."</option>"; 
+					   
+					   }
+					 ?>				  
+				  </select>
+            </td></tr>            
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Name:
+                </p>
+            </td><td>
+                <?php
+                    //print out an appropriate select statement
+                ?>
+                <input type="text" size="40" name="booktitle" value="<?php echo $aref->booktitle; ?>" onChange="javascript:check_edit(this);"/>
+            </td></tr>            
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Year:
+                </p>
+            </td><td>
+                <input type="text" size="40" name="year" value="<?php echo $aref->OPTyear; ?>" onChange="check_edit(this);"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Month:
+            </td><td>
+                <?php include($GLOBALS["draw_includes_path"]."/.MonthEdit.html"); ?>
+            </td></tr>
+             <tr><td class="reference_edit">
+                 Volume:
+            </td><td>
+                <input type="text" size="40" name="volume" value="<?php echo $aref->OPTvolume; ?>" onChange="check_edit(this);"/>
+            </td></tr>
+             <tr><td class="reference_edit">
+                Number:
+            </td><td>
+                <input type="text" size="40" name="number" value="<?php echo $aref->OPTnumber; ?>" onChange="check_edit(this);"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Editor:
+            </td><td>
+                <input type="text" size="40" name="editor" value="<?php echo $aref->OPTeditor; ?>"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Series:
+            </td><td>
+                <input type="text" size="40" name="series" value="<?php echo $aref->OPTseries; ?>"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Address:
+            </td><td>
+                <input type="text" size="40" name="address" value="<?php echo $aref->OPTaddress; ?>"/>
+            </td></tr>
+           <tr><td class="reference_edit">
+                Publisher:
+            </td><td>
+                <input type="text" size="40" name="publisher" value="<?php echo $aref->OPTpublisher; ?>"/>
+            </td></tr>
+
+<script language="javascript">
+<!--
+
+	form = document.forms[1];
+
+	if(form.collection_select.options[form.collection_select.selectedIndex].value == "new"){
+
+		//if we don't already have a resource selected
+		check_edit(form.title);
+
+	}
+
+//-->
+</script>

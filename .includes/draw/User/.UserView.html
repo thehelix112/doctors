@@ -1,0 +1,25 @@
+
+<table class="category_view">
+    <tr><td class="category_top" align="center">
+        <table class="category_main">
+            <tr><td class="category_main" align="right">
+                <p class="view_title">Username:</p>
+            </td><td colspan="3">
+                <p class="view_title"><?php echo $auser->username; ?></p>
+            </td></tr>
+            <tr><td class="category_main" align="right">
+                <p class="view_main">Full Name:</p>
+            </td><td colspan="3">
+                <p class="view_main"><?php echo $auser->fullname; ?></p>
+            </td></tr>
+			<?php if($auser->administrator == "true") { ?>
+		    <tr><td>
+				<p class="view_main">Administrator:</p>
+			</td><td colspan="3">
+				<p class="view_main">Yes</p>
+			</td></tr>
+        </table>
+    </td></tr>
+</table>
+
+        

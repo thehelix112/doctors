@@ -1,0 +1,67 @@
+<form action="index.php" method="POST" onSubmit="return checkForm(this); "  enctype="multipart/form-data">
+
+<br>
+<table class="reference_edit">
+    <tr><td class="reference_edit">
+        <table class="reference_edit">
+
+<script language="javascript">
+<!--
+function checkForm(form) {
+
+    if(form.name.value == ""){
+
+        alert("Please insert a Name!");
+        form.name.focus();
+        return false;
+                
+    }
+
+    return true;
+
+}
+
+
+-->
+</script>
+
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Name:
+                </p>
+            </td><td>
+                <input type="text" size="30" name="name" value="<?php echo $adoc->name; ?>"/>
+            </td></tr>
+            <?php if(isset($adoc->id)){ ?>
+            <input type="hidden" name="id" value="<?php echo $adoc->id; ?>"/>
+            <?php } ?>
+            <?php if(isset($adoc->reference_id)){ ?>
+            <input type="hidden" name="reference_id" value="<?php echo $adoc->reference_id; ?>"/>
+            <?php } ?>
+			<?php if($_SESSION["action"] == ACTION_ADD){ ?>
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                File:
+                </p>
+            </td><td>
+                <input type="file" size="30" name="document"/>
+            </td></tr>			
+			 <input type="hidden" name="MAX_FILE_SIZE" value="500000000" />
+            <?php } ?>
+
+		</table>
+
+    </td></tr>
+    <tr><td class="article_bottom" colspan="4">
+        &nbsp;
+    </td></tr>
+    <tr><td class="article_bottom" colspan="4" align="center">
+       Description:<br class="reference_edit">
+        <textarea name="description" rows="5" cols="50"><?php echo $adoc->description; ?></textarea>
+    </td></tr>
+    <tr><td class="reference_edit" colspan="2" align="center">
+            <input type="submit" name="action" value="Save"> <input type="reset" value="Reset Form"> 
+    </td></tr>
+</table>
+
+</form>

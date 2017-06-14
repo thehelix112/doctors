@@ -1,0 +1,40 @@
+
+    
+    <form action="index.php" method="POST" name="form">
+    <table>
+        <tr><td>
+            <p class="main">Search String:</P>
+        </td><td>
+            <input type="text" name="search_needles" value="" size="60" />        
+        </td></tr>
+        <tr><td valign="top">
+            <p class="main">Resource Types:</p>
+        </td><td>
+            <table width="100%">
+            <tr><td width="50%">
+                <input type="checkbox" name="mask_<?php echo get_type_as_string(TYPE_JOURNAL) ;?>" checked>
+                    Journal</input>
+            </td><td width="50%">
+                <input type="checkbox" name="mask_<?php echo get_type_as_string(TYPE_CONFERENCE); ?>" checked>
+                    Conference</input>
+            </td></tr>
+            <tr><td>
+                <input type="checkbox" name="mask_<?php echo get_type_as_string(TYPE_BOOK); ?>" checked>
+                    Book</input>
+            </td><td>
+                <input type="checkbox" name="mask_<?php echo get_type_as_string(TYPE_SCHOOL); ?>" checked>
+                    Educational Institution</input>
+            </td></tr>
+            <tr><td>
+                <input type="checkbox" name="mask_<?php echo get_type_as_string(TYPE_COMPANY); ?>" checked>
+                    Company</input>
+            </td><td>
+            </td></tr>
+            </table>
+        </td></tr>
+        <tr><td align="right" valign="top" colspan="2">
+            <input type="hidden" name="confirm" value="TRUE"/>
+            <input type="submit" name="action" value="Search"/>
+        </td></tr> 
+    </table>
+    </form>

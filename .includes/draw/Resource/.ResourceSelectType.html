@@ -1,0 +1,39 @@
+
+    
+    <script language="javascript">
+    <!--
+    //-->
+    </script>
+
+    <table>
+        <tr><td>
+                <p class="main">Resource Type:</p>
+        </td><td>
+            <form action="index.php" method="POST" name="form">
+                <select name="object_type" size="1" onChange="if(this.value != '') submit();">
+                    <option value="">
+                        Select from list</option>
+                    <option value="<?php echo get_type_as_string(TYPE_JOURNAL)."\"";
+                        if($_SESSION["object_type"] == TYPE_JOURNAL) echo " selected"; ?>>
+                        Journal</option>
+                    <option value="<?php echo get_type_as_string(TYPE_CONFERENCE)."\"";
+                        if($_SESSION["object_type"] == TYPE_CONFERENCE) echo " selected"; ?>>
+                        Conference</option>
+                    <option value="<?php echo get_type_as_string(TYPE_COLLECTION)."\"";
+                        if($_SESSION["object_type"] == TYPE_COLLECTION) echo " selected"; ?>>
+                        Collection</option>
+                    <option value="<?php echo get_type_as_string(TYPE_BOOK)."\"";
+                        if($_SESSION["object_type"] == TYPE_BOOK) echo " selected"; ?>>
+                        Book</option>
+                    <option value="<?php echo get_type_as_string(TYPE_SCHOOL)."\"";
+                        if($_SESSION["object_type"] == TYPE_SCHOOL) echo " selected"; ?>>
+                        School</option>
+                    <option value="<?php echo get_type_as_string(TYPE_COMPANY)."\"";
+                        if($_SESSION["object_type"] == TYPE_COMPANY) echo " selected"; ?>>
+                        Company</option>
+                </select>
+            </form>
+
+        </td></tr>
+    </table>
+

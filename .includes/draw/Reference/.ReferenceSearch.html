@@ -1,0 +1,132 @@
+
+<script language="javascript">
+<!--
+
+function select(value){
+
+	form = document.forms[0];
+
+	//alert(form.search_needles.name);
+
+	//look for the last type checkbox
+	last_name = "mask_Unpublished";
+
+	elements = new Array();
+
+	for(var i = 0; i < form.length; i++){		
+
+		if(form.elements[i].type == "checkbox" &&
+			form.elements[i].name != last_name){			
+
+			//alert("Adding "+form.elements[i].name);
+
+			elements.push(form.elements[i]);
+		} else if(form.elements[i].name == last_name){
+			//alert("at end");
+			elements.push(form.elements[i]);
+			break;
+		}
+
+	}
+
+	number = elements.length;
+
+	for(var i = 0; i < number;  i++){
+
+		elements.pop().checked = value;
+
+	}	
+
+}
+
+//-->
+</script>
+    
+    <form action="index.php" method="POST" name="form">
+    <table>
+        <tr><td>
+            <p class="main">Search String:</P>
+        </td><td>
+            <input type="text" name="search_needles" value="" size="60" />        
+        </td></tr>
+        <tr><td valign="top">
+            <p class="main">Reference Types:</p>
+        </td><td>
+            <table width="100%">
+            <tr><td width="50%">
+                <input type="checkbox" name="mask_<?php echo get_type_as_string(TYPE_ARTICLE) ;?>" checked>
+                    Journal&nbsp;Article</input>
+            </td><td width="50%">
+                <input type="checkbox" name="mask_<?php echo get_type_as_string(TYPE_INPROCEEDINGS); ?>" checked>
+                    Conference&nbsp;Paper</input>
+            </td></tr>
+            <tr><td>
+                <input type="checkbox" name="mask_<?php echo get_type_as_string(TYPE_INCOLLECTION); ?>" checked>
+                    Collection&nbsp;Article</input>
+            </td><td>
+                <input type="checkbox" name="mask_<?php echo get_type_as_string(TYPE_INBOOK); ?>" checked>
+                    Book&nbsp;Section</input>
+            </td></tr>
+            <tr><td>
+                <input type="checkbox" name="mask_<?php echo get_type_as_string(TYPE_BOOKLET); ?>" checked>
+                    Booklet</input>
+            </td><td>
+                <input type="checkbox" name="mask_<?php echo get_type_as_string(TYPE_THESIS); ?>" checked>
+                    Thesis</input>
+            </td></tr>
+            <tr><td>
+                <input type="checkbox" name="mask_<?php echo get_type_as_string(TYPE_MANUAL); ?>" checked>
+                    Manual</input>
+            </td><td>
+                <input type="checkbox" name="mask_<?php echo get_type_as_string(TYPE_TECHREPORT); ?>" checked>
+                    Technical&nbsp;Report</input>
+            </td></tr>
+            <tr><td>
+                <input type="checkbox" name="mask_<?php echo get_type_as_string(TYPE_MISC); ?>" checked>
+                    Miscellaneous</input>
+            </td><td>
+                <input type="checkbox" name="mask_<?php echo get_type_as_string(TYPE_UNPUBLISHED); ?>" checked>
+                    Unpublished</input>
+            </td></tr>
+            <tr><td colspan="2">
+				<img src="images/clear.gif" height="2">
+            </td></tr>
+            <tr><td bgcolor="#D2D2D2" colspan="2">
+				<img src="images/clear.gif" height="1">
+            </td></tr>
+            <tr><td colspan="2">
+				<img src="images/clear.gif" height="2">
+            </td></tr>
+            <tr><td>
+                <a href="javascript:select(true);">Select All</a>
+            </td><td>
+                <a href="javascript:select(false);">Select None</a>
+            </td></tr>
+            </table>
+        </td></tr>
+        <tr><td valign="top">
+            <p class="main">Filter:</p>
+        </td><td>
+            <table width="100%">
+            <tr><td width="50%">
+                <input type="checkbox" name="mask_<?php echo get_state_as_string(STATE_NOTATED) ;?>">
+                Notated</input>
+            </td><td width="50%">
+                <input type="checkbox" name="mask_<?php echo get_state_as_string(STATE_LINKED) ;?>">
+                Citations</input>
+            </td></tr>
+            <tr><td>
+                <input type="checkbox" name="mask_<?php echo get_state_as_string(STATE_CATEGORISED) ;?>">
+                Categorised</input>
+            </td><td>
+                <input type="checkbox" name="mask_<?php echo get_state_as_string(STATE_HASDOCUMENT) ;?>">
+                Has Document</input>
+            </td></tr>
+            </table>
+        </td></tr>
+        <tr><td align="right" valign="top" colspan="2">
+            <input type="hidden" name="confirm" value="TRUE"/>
+            <input type="submit" name="action" value="Search"/>
+        </td></tr> 
+    </table>
+    </form>

@@ -1,0 +1,8 @@
+    <tr><td valign="top" class="<?php echo $bgcolour; ?>">Collection
+    </td><td class="<?php echo $bgcolour; ?>">
+        <p class="view_title">
+        <?php echo get_action_as_link($this->name, $this->id, TYPE_COLLECTION, ACTION_VIEW); ?></p>
+    </td><td valign="top" class="<?php echo $bgcolour; ?>">
+        <?php echo get_action_as_link("View", $this->id, TYPE_COLLECTION, ACTION_VIEW); ?>&nbsp;&nbsp;<?php echo get_action_as_link("Edit", $this->id, TYPE_COLLECTION, ACTION_EDIT); ?>&nbsp;&nbsp;<?php echo get_action_as_link("Delete", $this->id, TYPE_COLLECTION, ACTION_DELETE); ?>
+    </td></tr>
+

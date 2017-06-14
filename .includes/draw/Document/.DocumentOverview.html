@@ -1,0 +1,16 @@
+    <tr><td valign="top" class="<?php echo $bgcolour; ?>">Document
+    </td><td class="<?php echo $bgcolour; ?>">
+        <p class="view_title">
+        <?php echo get_action_as_link($this->title, $this->id, TYPE_DOCUMENT, ACTION_VIEW); ?></p>
+        <p class="view_author"><?php echo $this->name; ?></p>
+    </td><td valign="top" class="<?php echo $bgcolour; ?>">
+        <table>
+            <tr><td align="center">
+                <?php echo get_action_as_link("Edit", $this->id, TYPE_DOCUMENT, ACTION_EDIT); ?>
+            </td></tr>
+            <tr><td align="center">
+                    <?php echo get_action_as_link("Delete", $this->id, TYPE_DOCUMENT, ACTION_DELETE); ?>
+            </td></tr>
+        </table>
+    </td></tr>
+

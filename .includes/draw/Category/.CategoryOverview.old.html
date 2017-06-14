@@ -1,0 +1,14 @@
+    <tr><td class="<?php echo $bgcolour; ?>">
+        <a href="index.php?<?php echo "object_id=".$this->id."&object_type=".get_type_as_string(TYPE_CATEGORY)."&action=View"; ?>"><?php echo $this->name; ?></a></p>
+    </td><td valign="top" class="<?php echo $bgcolour; ?>">
+
+        <table>
+            <tr><td align="center">
+                <?php echo get_action_as_link("Edit", $this->id, TYPE_CATEGORY, ACTION_EDIT); ?>
+            </td></tr>
+			<tr><td align="center">
+                <?php echo get_action_as_link("Delete", $this->id, TYPE_CATEGORY, ACTION_DELETE); ?>
+            </td></tr>
+        </table>
+    </td></tr>
+

@@ -1,0 +1,11 @@
+    <tr><td valign="top" class="<?php echo $bgcolour; ?>">Manual
+    </td><td class="<?php echo $bgcolour; ?>">
+		<table>
+          <tr><td><p class="view_title"><?php echo get_action_as_link($this->title, $this->id, TYPE_MANUAL, ACTION_VIEW); ?></p></td></tr>
+          <tr><td><p class="view_author"><?php echo $this->OPTauthor; ?></p></td></tr>
+          <tr><td><p class="view_source"><?php echo $this->OPTorganisation; ?></p></td></tr>
+		</table>
+    </td><td valign="top" class="<?php echo $bgcolour; ?>">
+        <?php echo get_action_as_link("View", $this->id, TYPE_MANUAL, ACTION_VIEW); ?>&nbsp;&nbsp;<?php echo get_action_as_link("Edit", $this->id, TYPE_MANUAL, ACTION_EDIT); ?>&nbsp;&nbsp;<?php echo get_action_as_link("Delete", $this->id, TYPE_MANUAL, ACTION_DELETE); ?>
+    </td></tr>
+

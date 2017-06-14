@@ -1,0 +1,253 @@
+
+<script language="javascript">
+<!--
+function checkForm(form) {
+
+    if(!checkCommon(form)){
+        return false;
+    }
+
+    if(form.author.value == ""){
+
+        alert("Please insert a Author!");
+        form.author.focus();
+        return false;
+                
+    }
+    if(form.journal.value == ""){
+
+        alert("Please insert a Journal!");
+        form.journal.focus();
+        return false;
+                
+    }
+    if(form.year.value == ""){
+
+        alert("Please insert a Year!");
+        form.year.focus();
+        return false;
+                
+    }
+
+    return true;
+
+}
+
+<?php    
+
+    $journals = array();
+
+    foreach($resources as $resource){
+	
+        if($resource["resource_type"] == get_type_as_string(TYPE_JOURNAL)){
+            $journals[] = $resource;
+        }
+    }
+    echo get_array_as_javascript_array($journals, "journals");
+?>
+
+var name;
+var year;
+var volume;
+var number;
+var month;
+var name_id = 0;
+var year_id = 1;
+var volume_id = 2;
+var number_id = 3;
+var month_id = 4;
+
+function check_edit(text){
+
+    var form = text.form;
+
+	//if the values now match an existing journal then select that journal in journal_select.
+	index = check_values(form);	
+
+	if(index > -1){
+	  form.journal_select.selectedIndex = ++index;
+	  
+	} else {
+	  form.journal_select.selectedIndex = 0;
+	}
+
+}
+
+function check_values(form){
+
+    for(it = 0; it < journals.length; it++){	
+
+	  if(form.journal.value != journals[it]['name']) continue;
+	  if(form.year.value != journals[it]['year']) continue;
+	  if(form.volume.value != journals[it]['volume']) continue;
+	  if(form.number.value != journals[it]['number']) continue;
+	  if(form.month.value != journals[it]['month']) continue;
+	  return it;
+
+	}
+	
+	return -1;
+
+}
+
+function set_new_values(select){
+
+    var form = select.form;
+
+    if(select.value="new"){
+
+  	  name = form.journal.value;
+	  year = form.year.value;
+	  volume = form.volume.value;
+	  number = form.number.value;
+	  month = form.month.value;	 
+
+	}
+
+}
+
+function journal_selected(select){
+
+    var form = select.form;
+	var index = select.selectedIndex;
+
+    if(index == 0){
+
+	  form.journal.value = name;
+	  form.year.value = year;
+	  form.volume.value = volume;
+	  form.number.value = number;
+	  form.month.value = month;	  
+
+	} else {
+
+	  index--;
+
+	  form.journal.value = journals[index]['name'];
+	  form.year.value = journals[index]['year'];
+	  form.volume.value = journals[index]['volume'];
+	  form.number.value = journals[index]['number'];
+	  form.month.value = journals[index]['month'];
+
+	}
+
+}
+
+
+-->
+</script>
+
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Title:
+                </p>
+            </td><td>
+                <input type="text" size="40" name="title" value="<?php echo $aref->title; ?>"/>
+            </td></tr>
+
+            <input type="hidden" name="reference_type" value="Article"/>
+            <?php if(isset($aref->id)){ ?>
+            <input type="hidden" name="id" value="<?php echo $aref->id; ?>"/>
+            <?php } ?>
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Author:
+                </p>
+            </td><td>
+                <input type="text" size="40" name="author" value="<?php echo $aref->author; ?>"/>
+            </td></tr>
+
+            <tr><td class="reference_edit">
+                Keywords:
+            </td><td>
+                <input type="text" size="40" name="keywords" value="<?php echo $aref->OPTkey; ?>"/>
+            </td></tr>
+             <tr><td class="reference_edit">
+                Pages:
+            </td><td>
+                <input type="text" size="40" name="pages" value="<?php echo $aref->OPTpages; ?>"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Note:
+            </td><td>
+                <input type="text" size="40" name="note" value="<?php echo $aref->OPTnote; ?>"/>
+            </td></tr>
+             <tr><td class="reference_edit">
+                Annote:
+            </td><td>
+                <input type="text" size="40" name="annote" value="<?php echo $aref->OPTannote; ?>"/>
+            </td></tr>
+
+			<tr><td colspan="2">&nbsp;</td></tr>	
+
+			<tr><td colspan="2"><p class="reference_heading">Journal Details</td></tr>
+	
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Resource:
+                </p>
+            </td><td>
+				   <select name="journal_select" size="1" cols="40" onChange="journal_selected(this);" onFocus="set_new_values(this);">
+					 <option value="new">New</option>
+					 <?php
+					   foreach($journals as $journal){
+
+					     $name = $journal['year']." ".$journal['name'];
+						 if(valid($journal['volume']) && valid($journal['number'])) 
+						   $name .= ", ".$journal['volume'].":".$journal['number'];
+					   
+						 if(strlen($name) > $GLOBALS["max_name_length"]) $name = substr($name, 0, $GLOBALS["max_name_length"]-3)."...";
+					     echo "<option value=\"".$journal['id']."\"";
+			             if($journal['id'] == $aref->resource_id) echo " selected";
+					     echo ">".$name."</option>"; 
+					   
+					   }
+					 ?>				  
+				  </select>
+            </td></tr>            
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Name:
+                </p>
+            </td><td>
+                <?php
+                    //print out an appropriate select statement
+                ?>
+                <input type="text" size="40" name="journal" value="<?php echo $aref->journal; ?>" onChange="javascript:check_edit(this);"/>
+            </td></tr>            
+            <tr><td class="reference_edit">
+                <p class="mandatory">
+                Year:
+                </p>
+            </td><td>
+                <input type="text" size="40" name="year" value="<?php echo $aref->year; ?>" onChange="check_edit(this);"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Month:
+            </td><td>
+                <?php include($GLOBALS["draw_includes_path"]."/.MonthEdit.html"); ?>
+            </td></tr>
+             <tr><td class="reference_edit">
+                 Volume:
+            </td><td>
+                <input type="text" size="40" name="volume" value="<?php echo $aref->OPTvolume; ?>" onChange="check_edit(this);"/>
+            </td></tr>
+             <tr><td class="reference_edit">
+                Number:
+            </td><td>
+                <input type="text" size="40" name="number" value="<?php echo $aref->OPTnumber; ?>" onChange="check_edit(this);"/>
+            </td></tr>
+ 
+<script language="javascript">
+<!--
+
+	form = document.forms[1];
+
+	if(form.journal_select.options[form.journal_select.selectedIndex].value == "new"){
+
+		//if we don't already have a resource selected
+		check_edit(form.journal);
+
+	}
+//-->
+</script>

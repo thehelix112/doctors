@@ -1,0 +1,99 @@
+<form action="index.php" method="POST" onSubmit="return checkForm(this); ">
+
+<script language="javascript">
+<!--
+function checkCommon(form) {
+    if(form.name.value == ""){
+
+        alert("Please insert a Name!");
+        form.name.focus();
+        return false;
+                
+    }
+
+    return true;
+
+}
+-->
+</script>
+<br>
+<table class="category_edit">
+    <tr><td class="category_edit">
+        <table class="category_edit">
+
+            <tr><td class="category_edit">
+                Parent Category:
+            </td><td>
+                <input type="hidden" name="link_type" value="<?php echo LINK_CATEGORY_SUB_OF_CATEGORY; ?>">
+                <select name="to_id" size="1">
+                <option value="-1">None</option>
+                <?php
+                $array = Link::get_links(ANY, $_SESSION["user_id"], LINK_CATEGORY_OF_USER);				
+
+                foreach($array as $row){
+
+					$listcat = new Category;
+					$listcat->load_db($row["from_id"]);
+
+					if($acat->id == $listcat->id) continue; //can't be your own father
+
+                    echo "<option value=\"".$row["from_id"]."\"";
+                    if(isset($acat->id)){
+                        $rows = Link::get_links($acat->id, ANY, LINK_CATEGORY_SUB_OF_CATEGORY);
+                        if(count($rows) == 1){
+                            if($listcat->id == $rows[0]["to_id"]){
+                                echo " selected";
+                            }
+                        }
+                    }
+                    echo ">".$listcat->name."</option>\n";
+                }
+                ?>
+
+                </select>
+            </td></tr>
+            <tr><td class="category_edit">
+                <p class="mandatory">
+                Name:
+                </p>
+            </td><td>
+                <input type="text" size="30" name="name" value="<?php echo $acat->name; ?>"/>
+            </td></tr>
+
+
+<script language="javascript">
+<!--
+function checkForm(form) {
+
+    if(!checkCommon(form)){
+        return false;
+    }
+
+    return true;
+
+}
+-->
+</script>
+
+
+            <?php if(isset($acat->id)){ ?>
+            <input type="hidden" name="id" value="<?php echo $acat->id; ?>"/>
+            <?php } ?>
+            <tr><td colspan="2" align="center">
+                    &nbsp;
+            </td></tr>
+            <tr><td colspan="2" align="center">
+                    <p class="mandatory">Items in red are mandatory</p>
+            </td></tr>
+
+        </table>
+    </td><td class="category_edit" align="center" valign="top">
+        Description:<br class="category_edit">
+        <textarea name="description" rows="5" cols="50"><?php echo $acat->description; ?></textarea>
+    </td></tr>
+    <tr><td class="category_edit" colspan="2" align="center">
+            <input type="submit" name="action" value="Save"> <input type="reset" value="Reset Form"> 
+    </td></tr>
+</table>
+
+</form>

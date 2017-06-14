@@ -1,0 +1,94 @@
+
+<script language="javascript">
+<!--
+function checkForm(form) {
+
+    if(!checkCommon(form)){
+        return false;
+    }
+
+    if(form.author.value == ""){
+
+        alert("Please insert a Author!");
+        form.author.focus();
+        return false;
+                
+    }
+    if(form.booktitle.value == ""){
+
+        alert("Please insert a Collection name!");
+        form.booktitle.focus();
+        return false;
+                
+    }
+    if(form.year.value == ""){
+
+        alert("Please insert a Year!");
+        form.year.focus();
+        return false;
+                
+    }
+
+    return true;
+
+}
+
+-->
+</script>
+
+            <?php if(isset($ares->id)){ ?>
+            <input type="hidden" name="id" value="<?php echo $ares->id; ?>"/>
+            <?php } ?>
+            <tr><td class="resource_edit">
+                <p class="mandatory">
+                Year:
+                </p>
+            </td><td>
+                <input type="text" size="30" name="year" value="<?php echo $ares->OPTyear; ?>"/>
+            </td></tr>
+            <tr><td class="resource_edit">
+                Month:
+            </td><td>
+                <?php include($GLOBALS["draw_includes_path"]."/.MonthEdit.html"); ?>
+            </td></tr>
+             <tr><td class="resource_edit">
+                 Volume:
+            </td><td>
+                <input type="text" size="30" name="volume" value="<?php echo $ares->OPTvolume; ?>"/>
+            </td></tr>
+             <tr><td class="resource_edit">
+                Number:
+            </td><td>
+                <input type="text" size="30" name="number" value="<?php echo $ares->OPTnumber; ?>"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Editor:
+            </td><td>
+                <input type="text" size="30" name="editor" value="<?php echo $ares->OPTeditor; ?>"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Series:
+            </td><td>
+                <input type="text" size="30" name="series" value="<?php echo $ares->OPTseries; ?>"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Address:
+            </td><td>
+                <input type="text" size="30" name="address" value="<?php echo $ares->OPTaddress; ?>"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Edition:
+            </td><td>
+                <input type="text" size="30" name="edition" value="<?php echo $ares->OPTedition; ?>"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Type:
+            </td><td>
+                <input type="text" size="30" name="type" value="<?php echo $ares->OPTtype; ?>"/>
+            </td></tr>
+            <tr><td class="reference_edit">
+                Publisher:
+            </td><td>
+                <input type="text" size="30" name="publisher" value="<?php echo $ares->OPTpublisher; ?>"/>
+            </td></tr>
+ 

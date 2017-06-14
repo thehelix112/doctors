@@ -1,0 +1,96 @@
+<form action="index.php" method="POST" onSubmit="return checkForm(this); ">
+
+<script language="javascript">
+<!--
+function checkCommon(form) {
+    if(form.name.value == ""){
+
+        alert("Please insert a Name!");
+        form.name.focus();
+        return false;
+                
+    }
+
+    return true;
+
+}
+-->
+</script>
+<br>
+<table class="resource_edit">
+    <tr><td class="resource_edit">
+        <table class="resource_edit">
+            <tr><td class="resource_edit">
+                <p class="mandatory">
+                Name:
+                </p>
+            </td><td>
+                <input type="text" size="30" name="name" value="<?php echo $this->name; ?>"/>
+            </td></tr>
+
+<script language="javascript">
+<!--
+function checkForm(form) {
+
+    if(!checkCommon(form)){
+        return false;
+    }
+
+    if(form.urlmain.value == ""){
+
+        alert("Please insert a URL!");
+        form.urlmain.focus();
+        return false;
+                
+    }
+
+    if(form.watch[0].checked && form.watchurl.value == ""){
+
+        alert("Please specify a URL to watch!");
+        form.watchurl.focus();
+        return false;
+
+    }
+
+    if(form.watch[0].checked && form.watchkeys.value == ""){
+
+        alert("Please specify which keywords to watch for!");
+        form.watchkeys.focus();
+        return false;
+
+    }
+    return true;
+
+}
+-->
+</script>
+
+
+            <?php if(isset($this->id)){ ?>
+            <input type="hidden" name="id" value="<?php echo $this->id; ?>"/>
+            <?php } ?>
+            <tr><td class="resource_edit">
+                <p class="mandatory">
+                URL:
+                </p>
+            </td><td>
+                <input type="text" size="30" name="urlmain" value="<?php echo $this->urlmain; ?>"/>
+            </td></tr>
+            <tr><td class="resource_edit">
+                <p class="mandatory">
+                Watch:
+                </p>
+            </td><td>
+                Yes <input type="radio" name="watch" value="Yes" <?php if($this->watch == "Yes") echo "checked"; ?> />
+                No <input type="radio" name="watch" value="No" <?php if($this->watch == "No" || !isset($this->watch)) echo "checked"; ?> />
+            </td></tr>            
+            <tr><td class="resource_edit">
+                Watch URL:
+            </td><td>
+                <input type="text" size="30" name="watchurl" value="<?php echo $this->watchurl; ?>"/>
+            </td></tr>
+            <tr><td class="resource_edit">
+                Watch Keywords:
+            </td><td>
+                <input type="text" size="30" name="watchkeys" value="<?php echo $this->watchkeys; ?>"/>
+            </td></tr>

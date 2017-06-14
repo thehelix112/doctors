@@ -1,0 +1,47 @@
+    <tr><td valign="top" class="<?php echo $bgcolour; ?>">
+            <?php switch($this->type){
+            
+            case get_type_as_string(TYPE_JOURNAL):
+                echo "Journal";
+                break;
+
+            case get_type_as_string(TYPE_CONFERENCE):
+                echo "Conference";
+                break;
+
+            case get_type_as_string(TYPE_BOOK):
+                echo "Book";
+                break;
+
+            case get_type_as_string(TYPE_SCHOOL):
+                echo "Educational Institution";
+                break;
+
+            case get_type_as_string(TYPE_COMPANY):
+                echo "Company";
+                break;
+
+            }
+
+            ?>
+    </td><td class="<?php echo $bgcolour; ?>">
+        <a href="index.php?<?php echo "object_id=".$this->id."&object_type=".get_type_as_string(TYPE_RESOURCE)."&action=View"; ?>"><?php echo $this->name; ?></a></p>
+    </td><td valign="top" class="<?php echo $bgcolour; ?>">
+
+        <table>
+            <tr><td>
+                <form action="index.php" method="POST">
+                    <input type="hidden" name="object_id" value="<?php echo $this->id; ?>">
+                    <input type="hidden" name="object_type" value="<?php echo get_type_as_string(TYPE_RESOURCE); ; ?>">
+                    <input type="submit" name="action" value="Edit">
+                </form>
+            </td><td>
+                <form action="index.php" method="POST">
+                    <input type="hidden" name="object_id" value="<?php echo $this->id; ?>">
+                    <input type="hidden" name="object_type" value="<?php echo get_type_as_string(TYPE_RESOURCE); ; ?>">
+                    <input type="submit" name="action" value="Delete">
+                </form>
+            </td></tr>
+        </table>
+    </td></tr>
+

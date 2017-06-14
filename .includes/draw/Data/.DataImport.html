@@ -1,0 +1,38 @@
+<form enctype="multipart/form-data" action="index.php" method="POST" onSubmit="return checkForm(this); ">
+
+<script language="javascript">
+<!--
+function checkForm(form) {
+
+    if(form.import_path.value == ""){
+
+        alert("Please select a file!");
+        return false;
+
+    }
+
+    return true;
+
+}
+-->
+</script>
+<br>
+<table class="data_edit">
+    <tr><td class="data_edit">
+        <table class="data_edit">
+            <tr><td class="data_edit">
+                <p class="mandatory">
+                Import Path:
+                </p>
+            </td><td>
+                <input type="file" size="30" name="import_path"/>
+            </td></tr>
+        </table>
+
+    <tr><td class="data_edit" colspan="2" align="center">
+        <input type="submit" name="action" value="Save">
+    </td></tr>
+    </table>
+</form>
+
+
